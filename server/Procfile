@@ -1,1 +1,3 @@
 web: node src/
+worker: node src/scheduled-tasks/worker.js
+clock: node src/scheduled-tasks/clock.js
