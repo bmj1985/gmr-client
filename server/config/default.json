@@ -10,7 +10,7 @@
     "entity": "user",
     "service": "users",
     "secret": "CVI6wbMXj3FQrGKngoglo7hPdkU=",
-    "authStrategies": ["jwt", "local"],
+    "authStrategies": ["jwt", "local", "facebook", "google"],
     "jwtOptions": {
       "header": {
         "typ": "access"
@@ -37,8 +37,9 @@
         "scope": ["email", "profile", "openid"]
       },
       "facebook": {
-        "key": "<facebook oauth key>",
-        "secret": "<facebook oauth secret>"
+        "key": "FACEBOOK_CLIENT_ID",
+        "secret": "FACEBOOK_CLIENT_SECRET",
+        "scope": ["email, public_profile"]
       },
       "twitter": {
         "key": "<twitter oauth key>",

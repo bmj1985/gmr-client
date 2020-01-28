@@ -12,6 +12,9 @@
         <section>
           <GoogleSignInButton />
         </section>
+        <section>
+          <FacebookSignInButton />
+        </section>
         <p id="or">OR</p>
         <p class="sign-up-text">Login With Email and Password</p>
         <section>
@@ -64,10 +67,11 @@
 import Vue from 'vue'
 import { mapActions, mapState } from 'vuex'
 import GoogleSignInButton from '@/components/GoogleSignInButton'
+import FacebookSignInButton from '@/components/FacebookSignInButton'
 import Container from '@/UIComponents/Container'
 export default Vue.extend({
   name: 'Login',
-  components: { GoogleSignInButton, Container },
+  components: { GoogleSignInButton, Container, FacebookSignInButton },
   data: () => ({
     valid: false,
     user: {
