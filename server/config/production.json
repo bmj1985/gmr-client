@@ -33,8 +33,9 @@
         "scope": ["email", "profile", "openid"]
       },
       "facebook": {
-        "key": "<facebook oauth key>",
-        "secret": "<facebook oauth secret>"
+        "key": "FACEBOOK_CLIENT_ID",
+        "secret": "FACEBOOK_CLIENT_SECRET",
+        "scope": ["email, public_profile"]
       },
       "twitter": {
         "key": "<twitter oauth key>",

@@ -97,6 +97,7 @@ export default Vue.extend({
 <style scoped lang="scss">
 .card {
   width: 100%;
+  height: fit-content;
   margin: 0.25rem;
   padding: 0.25rem;
   display: flex;

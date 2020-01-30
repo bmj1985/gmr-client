@@ -1,10 +1,10 @@
 <template>
   <a :href="API_URL">
-    <span class="button google-button" outlined>
+    <span class="button facebook-button" outlined>
       <div class="outer-container">
         <img
-          src="../assets/googleassets/google-g.svg"
-          class="googleg image is-24x24"
+          src="../assets/facebookassets/white/PNG/f_logo_RGB-White_1024.png"
+          class="facebookf image is-24x24"
         />
         <div class="inner-container">
           <p class="button-text">
@@ -20,16 +20,16 @@
 import Vue from 'vue'
 import API_URL from '@/API_URL.js'
 export default Vue.extend({
-  name: 'GoogleSignInButton',
+  name: 'FacebookSignInButton',
   data: () => ({
-    API_URL: `${API_URL}/oauth/google`
+    API_URL: `${API_URL}/oauth/facebook`
   }),
   computed: {
     buttonText() {
       if (this.$route.name === 'SignUp') {
-        return 'SIGN UP WITH GOOGLE'
+        return 'CONTINUE WITH FACEBOOK'
       }
-      return 'LOGIN WITH GOOGLE'
+      return 'LOGIN WITH FACEBOOK'
     }
   }
 })
@@ -37,13 +37,16 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
-.google-button {
+.facebook-button {
   min-height: 2rem;
   width: 100%;
   display: flex;
   align-items: center;
+  background: #4267b2;
+  color: white;
+  margin-top: 1rem;
 }
-.googleg {
+.facebookf {
   padding: 0.2rem;
   align-self: flex-start;
   /* padding-right: 24px; */
@@ -70,6 +73,6 @@ export default Vue.extend({
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.54);
+  color: white;
 }
 </style>
