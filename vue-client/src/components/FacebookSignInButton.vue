@@ -4,7 +4,7 @@
       <div class="outer-container">
         <img
           src="../assets/facebookassets/white/PNG/f_logo_RGB-White_1024.png"
-          class="facebookg image is-24x24"
+          class="facebookf image is-24x24"
         />
         <div class="inner-container">
           <p class="button-text">
@@ -46,7 +46,7 @@ export default Vue.extend({
   color: white;
   margin-top: 1rem;
 }
-.facebookg {
+.facebookf {
   padding: 0.2rem;
   align-self: flex-start;
   /* padding-right: 24px; */
