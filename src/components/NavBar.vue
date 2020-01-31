@@ -22,9 +22,9 @@
       </b-navbar-dropdown>
     </template>
     <template slot="end">
-      <div v-if="!isUser">
+      <!-- <div v-if="!isUser">
         <LoginSignUpNav />
-      </div>
+      </div> -->
       <div v-if="isUser">
         <Logout />
       </div>
@@ -34,11 +34,11 @@
 
 <script>
 import Vue from 'vue'
-import LoginSignUpNav from './LoginSignUpNav'
+// import LoginSignUpNav from './LoginSignUpNav'
 import Logout from './Logout'
 export default Vue.extend({
   name: 'NavBar',
-  components: { Logout, LoginSignUpNav },
+  components: { Logout },
   computed: {
     isUser() {
       return (
@@ -61,13 +61,11 @@ export default Vue.extend({
   width: 100%;
   min-width: 83px;
 }
-
 .logo-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
   .logo {
     height: 3rem;
     width: 3rem;
@@ -77,7 +75,6 @@ export default Vue.extend({
     }
   }
 }
-
 .modal-card-foot {
   flex-direction: column;
 }
