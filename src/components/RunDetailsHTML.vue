@@ -24,10 +24,6 @@ export default Vue.extend({
   word-wrap: break-word;
   overflow-x: hidden;
   overflow-wrap: break-word;
-  @media only screen and (max-width: 450px) {
-    text-align: justify;
-    width: 100%;
-  }
 }
 
 .rawHtml * {

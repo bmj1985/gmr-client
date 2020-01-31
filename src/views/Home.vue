@@ -86,9 +86,5 @@ export default Vue.extend({
   height: 100%;
   margin: 2rem;
   overflow: scroll;
-
-  @media only screen and (max-width: 450px) {
-    margin: 0.5rem;
-  }
 }
 </style>
