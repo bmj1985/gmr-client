@@ -46,20 +46,20 @@ export default Vue.extend({
     // Query for future appointments
     queryUpcoming() {
       return {
-        date: { $gte: new Date().toISOString() },
+        datetime: { $gte: new Date().toISOString() },
         $sort: {
-          date: 1
+          datetime: 1
         }
       }
     },
     // Query for past appointments
     queryPast() {
       return {
-        date: {
+        datetime: {
           $lt: new Date().toISOString()
         },
         $sort: {
-          date: -1
+          datetime: -1
         }
       }
     },

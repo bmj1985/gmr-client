@@ -119,9 +119,11 @@ export default Vue.extend({
     },
     date: {
       get() {
+        console.log(this.editingEvent.date)
         return parse(this.editingEvent && this.editingEvent.date)
       },
       set(newVal) {
+        console.log('newVal DATE:', newVal)
         this.$store.commit('updateDate', newVal)
       }
     },
@@ -222,7 +224,8 @@ export default Vue.extend({
           return
         }
       }
-      this.createEvent(event)
+      console.log('EVENT:', this.transformGmrEventForDB(event))
+      this.createEvent(this.transformGmrEventForDB(event))
         .then(async res => {
           let result = await this.confirmAddAnotherEvent()
           if (result) {
@@ -238,6 +241,16 @@ export default Vue.extend({
             )
           }
         })
+    },
+    transformGmrEventForDB(gmrEvent) {
+      return {
+        datetime: gmrEvent.date.toISOString(),
+        details: gmrEvent.details,
+        trailheadId: gmrEvent.trailhead.id,
+        trailheadName: gmrEvent.trailhead.name,
+        runRouteLink: gmrEvent.runRouteLink,
+        title: gmrEvent.title
+      }
     },
     confirmRunRouteLink() {
       const confirmed = new Promise((resolve, reject) => {

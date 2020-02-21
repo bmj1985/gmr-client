@@ -28,6 +28,7 @@ export default new Vuex.Store({
       const admin =
         state.auth &&
         state.auth.user &&
+        state.auth.user.permissions &&
         state.auth.user.permissions.find(v => v === 'admin')
       if (admin === 'admin') {
         return true

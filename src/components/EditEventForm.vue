@@ -124,7 +124,7 @@ export default Vue.extend({
       updateEvent: 'update'
     }),
     onSubmit() {
-      this.updateEvent([this.editingEvent._id, this.editingEvent])
+      this.updateEvent([this.editingEvent.id, this.editingEvent])
         .then(() => {
           this.$parent.close()
           this.alertEventEdited()

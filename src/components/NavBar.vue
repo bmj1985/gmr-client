@@ -44,8 +44,7 @@ export default Vue.extend({
       return (
         this.$store.state.auth &&
         this.$store.state.auth.user &&
-        this.$store.state.auth.user._id &&
-        this.$store.state.auth.user._id.length > 0
+        this.$store.state.auth.user.id
       )
     },
     isAdmin() {
