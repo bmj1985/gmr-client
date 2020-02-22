@@ -119,11 +119,9 @@ export default Vue.extend({
     },
     date: {
       get() {
-        console.log(this.editingEvent.date)
         return parse(this.editingEvent && this.editingEvent.date)
       },
       set(newVal) {
-        console.log('newVal DATE:', newVal)
         this.$store.commit('updateDate', newVal)
       }
     },
@@ -224,7 +222,6 @@ export default Vue.extend({
           return
         }
       }
-      console.log('EVENT:', this.transformGmrEventForDB(event))
       this.createEvent(this.transformGmrEventForDB(event))
         .then(async res => {
           let result = await this.confirmAddAnotherEvent()
@@ -234,7 +231,7 @@ export default Vue.extend({
           } else this.$router.push('/events')
         })
         .catch(err => {
-          console.log(err)
+          console.log(err) // eslint-disable-line no-console
           if (err.code === 409) {
             this.$buefy.dialog.alert(
               'Event is duplicate and has already been created.'
@@ -295,7 +292,6 @@ export default Vue.extend({
       return confirmed
     },
     parseRunRouteLink(string) {
-      console.log(string)
       if (string.indexOf('http') === -1 && string.length > 5) {
         return 'https://' + string
       }

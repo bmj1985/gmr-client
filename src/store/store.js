@@ -17,8 +17,6 @@ const servicePlugins = requireModule
   .keys()
   .map(modulePath => requireModule(modulePath).default)
 
-console.log('servicePlugins:', servicePlugins)
-
 export default new Vuex.Store({
   state: {
     editingEvent: null

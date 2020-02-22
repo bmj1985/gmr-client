@@ -39,7 +39,7 @@ export default Vue.extend({
     ])
   },
   error() {
-    console.log(this.error)
+    console.log(this.error) // eslint-disable-line no-console
   }
 })
 </script>

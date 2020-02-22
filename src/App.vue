@@ -44,7 +44,7 @@ export default Vue.extend({
         }
       })
     } catch (error) {
-      console.log(error)
+      console.log(error) // eslint-disable-line no-console
     }
   }
 })
