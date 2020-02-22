@@ -10,7 +10,7 @@
       </section>
     </div>
     <div class="event-cards" v-if="!shouldShowCheckBackText">
-      <EventCard v-for="event in events" :key="event._id" :gmrEvent="event" />
+      <EventCard v-for="event in events" :key="event.id" :gmrEvent="event" />
       <router-link to="/addevent" v-if="isAdmin" class="add-button-container">
         <font-awesome-icon
           :icon="['fas', 'plus-circle']"

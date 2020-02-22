@@ -1,6 +1,8 @@
 <template>
   <div class="level is-mobile">
-    <Avatar />
+    <router-link to="profile">
+      <Avatar />
+    </router-link>
     <b-navbar-item tag="div" @click="logoutRedirect()">
       <a class="button is-light">
         Log out
