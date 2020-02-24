@@ -19,10 +19,10 @@ class Trailhead extends BaseModel {
 }
 const servicePath = 'trailheads'
 const servicePlugin = makeServicePlugin({
+  namespace: 'trailheads',
   Model: Trailhead,
   service: feathersClient.service(servicePath),
-  servicePath,
-  name: 'trailheads'
+  servicePath
 })
 
 // Setup the client-side Feathers hooks.

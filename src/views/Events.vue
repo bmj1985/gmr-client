@@ -1,6 +1,5 @@
 <template>
   <Container class="events-wrapper">
-    <FindGmrEvents />
     <div class="events-header">
       <section>
         <b-tabs position="is-centered" class="block" v-model="activeTab">
@@ -9,41 +8,48 @@
         </b-tabs>
       </section>
     </div>
-    <div class="event-cards" v-if="!shouldShowCheckBackText">
-      <EventCard v-for="event in events" :key="event.id" :gmrEvent="event" />
-      <router-link to="/addevent" v-if="isAdmin" class="add-button-container">
-        <font-awesome-icon
-          :icon="['fas', 'plus-circle']"
-          id="add-event-button"
-        />
-        <p>Add Event</p>
-      </router-link>
-    </div>
-    <div class="check-back-later" v-if="shouldShowCheckBackText">
-      {{ checkBackText }}
-    </div>
+    <FeathersVuexFind service="gmrEvents" :query="query" watch="query">
+      <section
+        slot-scope="{ items: events }"
+        v-if="!(events.length < 1 && activeTab === 0)"
+        class="event-cards"
+      >
+        <EventCard v-for="event in events" :key="event.id" :gmrEvent="event" />
+        <router-link to="/addevent" v-if="isAdmin" class="add-button-container">
+          <font-awesome-icon
+            :icon="['fas', 'plus-circle']"
+            id="add-event-button"
+          />
+          <p>Add Event</p>
+        </router-link>
+      </section>
+    </FeathersVuexFind>
+    <FeathersVuexFind service="gmrEvents" :query="query" watch="query">
+      <section
+        slot-scope="{ items: events }"
+        class="check-back-later"
+        v-if="events.length < 1 && activeTab === 0"
+      >
+        {{ checkBackText }}
+      </section>
+    </FeathersVuexFind>
   </Container>
 </template>
 
 <script>
 import Vue from 'vue'
 import Container from '@/UIComponents/Container'
-import { models } from 'feathers-vuex'
-import { mapActions, mapState, mapGetters } from 'vuex'
 import { nextTuesday, formatDate } from '../utils'
 import EventCard from '@/components/EventCard.vue'
-import FindGmrEvents from '@/components/FindGmrEvents.vue'
+import { models } from 'feathers-vuex'
 
 export default Vue.extend({
   name: 'Events',
-  components: { Container, EventCard, FindGmrEvents },
+  components: { Container, EventCard },
   data: () => ({
     activeTab: 0
   }),
   computed: {
-    ...mapState('gmrEvents', { areGmrEventsLoading: 'isFindPending' }),
-    ...mapGetters('gmrEvents', { findGmrEventsInStore: 'find' }),
-    // Query for future appointments
     queryUpcoming() {
       return {
         datetime: { $gte: new Date().toISOString() },
@@ -52,7 +58,6 @@ export default Vue.extend({
         }
       }
     },
-    // Query for past appointments
     queryPast() {
       return {
         datetime: {
@@ -63,22 +68,10 @@ export default Vue.extend({
         }
       }
     },
-    // The list of upcoming appointments.
-    upcomingGmrEvents() {
-      return this.findGmrEventsInStore({
-        query: this.queryUpcoming
-      }).data
-    },
-    // The list of past appointments
-    pastGmrEvents() {
-      return this.findGmrEventsInStore({
-        query: this.queryPast
-      }).data
-    },
-    events() {
+    query() {
       if (this.activeTab === 0) {
-        return this.upcomingGmrEvents
-      } else return this.pastGmrEvents
+        return this.queryUpcoming
+      } else return this.queryPast
     },
     editingEvent() {
       return this.$store.state.editingEvent
@@ -88,22 +81,9 @@ export default Vue.extend({
         nextTuesday()
       )}, please check back soon for more details.`
     },
-    shouldShowCheckBackText() {
-      return this.events.length < 1 && this.activeTab === 0
-    },
     isAdmin() {
       return this.$store.getters.isAdmin
     }
-  },
-  methods: {
-    ...mapActions('gmrEvents', { findGmrEvents: 'find' })
-  },
-  created() {
-    this.$store.state.editingEvent = new models.api.GmrEvent()
-    // Find all appointments. We'll use the getters to separate them.
-    this.findGmrEvents({
-      query: {}
-    })
   }
 })
 </script>

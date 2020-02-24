@@ -41,7 +41,7 @@ export default Vue.extend({
       return !(this.windowWidth > 450)
     },
     formattedDate() {
-      return formatDate(this.gmrEvent.date)
+      return formatDate(this.gmrEvent.datetime)
     },
     isAdmin() {
       return this.$store.getters.isAdmin

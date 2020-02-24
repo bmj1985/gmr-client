@@ -72,34 +72,32 @@ export default Vue.extend({
     Tiptap
   },
   data: () => ({
-    trailheads: [
-      {},
-      {
-        name: 'Green Mountain/Rooney',
-        address: '1000 S. Rooney Road, Lakewood, CO 80228'
-      },
-      {
-        name: 'Mountain Toad',
-        address: '900 Washington Ave, Golden, CO 80401'
-      },
-      {
-        name: 'Matthews / Winters Park Trailhead',
-        address: '1103 County Highway 93 Golden, CO 80401'
-      },
-      {
-        name: 'Golden City Brewery',
-        address: '920 12th St, Golden, CO 80401'
-      }
-    ],
     rawEventDetails: '',
     showWeekNumber: false,
     formatAmPm: true,
     enableSeconds: false,
     shouldClearContent: false
   }),
+  created() {
+    this.findTrailheads({
+      query: {}
+    })
+  },
   computed: {
     ...mapState('gmrEvents', { areGmrEventsLoading: 'isFindPending' }),
     ...mapGetters('gmrEvents', { findGmrEventsInStore: 'find' }),
+    ...mapState('trailheads', { areTrailheadsLoading: 'isFindPending' }),
+    ...mapGetters('trailheads', { findTrailheadsInStore: 'find' }),
+    trailheads() {
+      return this.findTrailheadsInStore({
+        query: this.queryTrailheads
+      }).data
+    },
+    queryTrailheads() {
+      return {
+        $limit: 100
+      }
+    },
     editingEvent() {
       return this.$store.state.editingEvent
     },
@@ -119,7 +117,7 @@ export default Vue.extend({
     },
     date: {
       get() {
-        return parse(this.editingEvent && this.editingEvent.date)
+        return parse(this.editingEvent && this.editingEvent.datetime)
       },
       set(newVal) {
         this.$store.commit('updateDate', newVal)
@@ -160,7 +158,7 @@ export default Vue.extend({
       return this.trailhead && this.trailhead.name && this.trailhead.address
     },
     time() {
-      const eventTime = format(this.editingEvent.date, 'h:mma')
+      const eventTime = format(this.editingEvent.datetime, 'h:mma')
       return eventTime
     },
     format() {
@@ -186,6 +184,7 @@ export default Vue.extend({
     ...mapActions('gmrEvents', {
       createEvent: 'create'
     }),
+    ...mapActions('trailheads', { findTrailheads: 'find' }),
     ...mapMutations('gmrEvents', { addItem: 'addItem' }),
     buefyAlert(text) {
       this.$buefy.dialog.alert(text)
@@ -241,7 +240,7 @@ export default Vue.extend({
     },
     transformGmrEventForDB(gmrEvent) {
       return {
-        datetime: gmrEvent.date.toISOString(),
+        datetime: gmrEvent.datetime.toISOString(),
         details: gmrEvent.details,
         trailheadId: gmrEvent.trailhead.id,
         trailheadName: gmrEvent.trailhead.name,

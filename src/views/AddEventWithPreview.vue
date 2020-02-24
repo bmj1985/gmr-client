@@ -33,7 +33,7 @@ export default Vue.extend({
       return this.$store.state.editingEvent
     },
     formattedDate() {
-      return formatDate(this.editingEvent.date)
+      return formatDate(this.editingEvent.datetime)
     },
     windowWidth() {
       return window.innerWidth

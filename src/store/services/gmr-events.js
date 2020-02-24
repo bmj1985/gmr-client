@@ -13,16 +13,23 @@ class GmrEvent extends BaseModel {
   // Define default properties here
   static instanceDefaults() {
     return {
-      date: nextTuesday(),
+      datetime: nextTuesday(),
       details: null,
       trailhead: {
         name: null,
         address: null
       },
-      route_id: null,
+      trailheadId: null,
+      trailheadName: null,
+      routeId: null,
       runRouteLink: null,
       title: null
     }
+  }
+
+  static setupInstance(data, { store, models }) {
+    data.trailhead = new models.api.Trailhead(data.trailhead)
+    return data
   }
 }
 const servicePath = 'gmr-events'

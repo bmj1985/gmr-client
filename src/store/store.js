@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './store.auth'
+import { FeathersVuex } from './feathers-client'
 import { models } from 'feathers-vuex/dist'
 
 Vue.use(Vuex)
+Vue.use(FeathersVuex)
 
 const requireModule = require.context(
   // The path where the service modules live
@@ -39,7 +41,7 @@ export default new Vuex.Store({
       state.editingEvent.title = title
     },
     updateDate(state, date) {
-      state.editingEvent.date = date
+      state.editingEvent.datetime = date
     },
     updateDetails(state, details) {
       state.editingEvent.details = details
