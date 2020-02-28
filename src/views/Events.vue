@@ -15,13 +15,7 @@
         class="event-cards"
       >
         <EventCard v-for="event in events" :key="event.id" :gmrEvent="event" />
-        <router-link to="/addevent" v-if="isAdmin" class="add-button-container">
-          <font-awesome-icon
-            :icon="['fas', 'plus-circle']"
-            id="add-event-button"
-          />
-          <p>Add Event</p>
-        </router-link>
+        <AddEventButton />
       </section>
     </FeathersVuexFind>
     <FeathersVuexFind service="gmrEvents" :query="query" watch="query">
@@ -41,11 +35,12 @@ import Vue from 'vue'
 import Container from '@/UIComponents/Container'
 import { nextTuesday, formatDate } from '../utils'
 import EventCard from '@/components/EventCard.vue'
+import AddEventButton from '@/components/AddEventButton.vue'
 import { models } from 'feathers-vuex'
 
 export default Vue.extend({
   name: 'Events',
-  components: { Container, EventCard },
+  components: { Container, EventCard, AddEventButton },
   data: () => ({
     activeTab: 0
   }),
@@ -74,7 +69,7 @@ export default Vue.extend({
       } else return this.queryPast
     },
     editingEvent() {
-      return this.$store.state.editingEvent
+      return new models.api.GmrEvent()
     },
     checkBackText() {
       return `Our next run will be ${formatDate(
@@ -114,36 +109,6 @@ export default Vue.extend({
     flex-wrap: wrap;
     height: 100%;
     width: 100%;
-  }
-  .add-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
-    padding: 1rem;
-    height: 10rem;
-    min-height: 200px;
-    width: 100%;
-
-    @media screen and (max-width: 320px) {
-      max-width: 320px;
-    }
-
-    @media screen and (max-width: 450px) {
-      max-width: 450px;
-    }
-    #add-event-button {
-      height: 100px;
-      width: 100px;
-      margin: 1rem;
-      padding: 1rem;
-      margin-right: 0;
-      padding-right: 0;
-      p {
-        font-weight: 800;
-        font-size: 2rem;
-      }
-    }
   }
   .check-back-later {
     display: flex;

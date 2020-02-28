@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './store.auth'
 import { FeathersVuex } from './feathers-client'
-import { models } from 'feathers-vuex/dist'
 
 Vue.use(Vuex)
 Vue.use(FeathersVuex)
@@ -20,9 +19,7 @@ const servicePlugins = requireModule
   .map(modulePath => requireModule(modulePath).default)
 
 export default new Vuex.Store({
-  state: {
-    editingEvent: null
-  },
+  state: {},
   getters: {
     isAdmin: state => {
       const admin =
@@ -36,29 +33,7 @@ export default new Vuex.Store({
       return false
     }
   },
-  mutations: {
-    updateTitle(state, title) {
-      state.editingEvent.title = title
-    },
-    updateDate(state, date) {
-      state.editingEvent.datetime = date
-    },
-    updateDetails(state, details) {
-      state.editingEvent.details = details
-    },
-    updateRouteId(state, routeId) {
-      state.editingEvent.route_id = routeId
-    },
-    updateRunRouteLink(state, runRouteLink) {
-      state.editingEvent.runRouteLink = runRouteLink
-    },
-    updateTrailhead(state, trailhead) {
-      state.editingEvent.trailhead = trailhead
-    },
-    resetForm(state) {
-      state.editingEvent = new models.api.GmrEvent()
-    }
-  },
+  mutations: {},
   actions: {},
   plugins: [...servicePlugins, auth]
 })

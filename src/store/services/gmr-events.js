@@ -20,16 +20,10 @@ class GmrEvent extends BaseModel {
         address: null
       },
       trailheadId: null,
-      trailheadName: null,
       routeId: null,
       runRouteLink: null,
       title: null
     }
-  }
-
-  static setupInstance(data, { store, models }) {
-    data.trailhead = new models.api.Trailhead(data.trailhead)
-    return data
   }
 }
 const servicePath = 'gmr-events'

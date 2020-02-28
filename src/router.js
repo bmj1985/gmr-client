@@ -66,13 +66,41 @@ export default new Router({
         import(/* webpackChunkName: "about" */ './components/PrivacyPolicy.vue')
     },
     {
-      path: '/profile',
-      name: 'Profile',
+      path: '/dashboard',
+      name: 'Dashboard',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/UserProfile.vue')
+        import(/* webpackChunkName: "about" */ './views/UserDashboard.vue')
+    },
+    {
+      path: '/admindashboard',
+      name: 'AdminDashboard',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () =>
+        import(/* webpackChunkName: "about" */ './views/AdminDashboard.vue'),
+      beforeEnter: (to, from, next) => {
+        store
+          .dispatch('auth/authenticate')
+          .then(res => {
+            const superAdmin = res.user.permissions.find(
+              v => v === 'super-admin'
+            )
+            const admin = res.user.permissions.find(v => v === 'admin')
+            if (superAdmin === 'super-admin' || admin === 'admin') {
+              next()
+            } else next({ path: '/' })
+          })
+          .catch(error => {
+            if (!error.message.includes('Could not find stored JWT')) {
+              console.error(error)
+              next({ path: '/' })
+            }
+          })
+      }
     }
   ]
 })

@@ -7,10 +7,7 @@
       <section class="modal-card-body">
         <fieldset class="event-fieldset">
           <b-field label="Title">
-            <b-input
-              placeholder="Event title"
-              v-model="editingEvent.title"
-            ></b-input>
+            <b-input placeholder="Event title" v-model="clone.title"></b-input>
           </b-field>
           <b-field label="Select day and time">
             <b-datetimepicker
@@ -24,30 +21,38 @@
             </b-datetimepicker>
           </b-field>
           <b-field label="Trailhead" class="trailhead-wrapper">
-            <div class="trailhead-content">
-              <b-select
-                placeholder="Select a trailhead"
-                v-model="editingEvent.trailhead"
-              >
-                <option
-                  v-for="trailhead in trailheads"
-                  :value="trailhead"
-                  :key="trailhead.name"
-                  :selected="trailhead"
-                >
-                  {{ trailhead.name }}
-                </option>
-              </b-select>
-              <button class="button">Add A Trailhead</button>
-            </div>
+            <FeathersVuexFind service="trailheads" :query="{}" watch="query">
+              <section slot-scope="{ items: trailheads }">
+                <div class="trailhead-content">
+                  <b-select
+                    placeholder="Select a trailhead"
+                    v-model="clone.trailheadId"
+                  >
+                    <option
+                      v-for="trailhead in trailheads"
+                      :value="trailhead.id"
+                      :key="trailhead.name"
+                      :selected="trailhead"
+                    >
+                      {{ trailhead.name }}
+                    </option>
+                  </b-select>
+                  <button class="button">Add A Trailhead</button>
+                </div>
+              </section>
+            </FeathersVuexFind>
           </b-field>
           <b-field label="Description">
-            <EditTiptap class="edit-tiptap" :content="editingEvent.details" />
+            <EditTiptap
+              class="edit-tiptap"
+              :content="clone.details"
+              v-on:setDetails="clone.details = $event"
+            />
           </b-field>
           <b-field label="Run Route Link">
             <b-input
               placeholder="Run link"
-              v-model="editingEvent.runRouteLink"
+              v-model="clone.runRouteLink"
             ></b-input>
           </b-field>
         </fieldset>
@@ -62,6 +67,9 @@
           @click.prevent="onSubmit()"
         >
           Edit Event
+        </button>
+        <button class="button" type="button" @click.prevent="clone.reset()">
+          Reset
         </button>
       </footer>
     </div>
@@ -78,41 +86,21 @@ export default Vue.extend({
   components: { EditTiptap },
   props: { gmrEvent: { type: Object } },
   data: () => ({
-    trailheads: [
-      {
-        name: 'Green Mountain/Rooney',
-        address: '1000 S. Rooney Road, Lakewood, CO 80228'
-      },
-      {
-        name: 'Mountain Toad',
-        address: '900 Washington Ave, Golden, CO 80401'
-      },
-      {
-        name: 'Matthews / Winters Park Trailhead',
-        address: '1103 County Highway 93 Golden, CO 80401'
-      },
-      {
-        name: 'Golden City Brewery',
-        address: '920 12th St, Golden, CO 80401'
-      }
-    ],
     showWeekNumber: false,
     formatAmPm: true,
-    enableSeconds: false
+    enableSeconds: false,
+    clone: null
   }),
   created() {
-    this.$store.state.editingEvent = Object.assign({}, this.gmrEvent)
+    this.clone = this.gmrEvent.clone()
   },
   computed: {
-    editingEvent() {
-      return this.$store.state.editingEvent
-    },
     date: {
       get() {
-        return parse(this.editingEvent && this.editingEvent.date)
+        return parse(this.clone && this.clone.datetime)
       },
       set(newVal) {
-        this.editingEvent.date = newVal
+        this.clone.datetime = newVal
       }
     },
     format() {
@@ -124,11 +112,11 @@ export default Vue.extend({
       updateEvent: 'update'
     }),
     onSubmit() {
-      this.updateEvent([this.editingEvent.id, this.editingEvent])
+      this.clone.commit()
+      this.updateEvent([this.clone.id, this.clone])
         .then(() => {
           this.$parent.close()
           this.alertEventEdited()
-          this.$store.commit('resetForm')
         })
         .catch(err => {
           throw new Error(err.message)

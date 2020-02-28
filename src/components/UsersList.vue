@@ -71,7 +71,6 @@ export default Vue.extend({
     return {
       hasMobileCards: true,
       total: 100,
-      loading: false,
       sortField: 'approvedBy',
       sortOrder: 'desc',
       defaultSortOrder: 'desc',

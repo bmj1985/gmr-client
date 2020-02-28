@@ -1,6 +1,6 @@
 <template>
   <div class="level is-mobile">
-    <router-link to="profile"
+    <router-link :to="dashboardNavigation"
       ><div class="level">
         <Avatar />
         <p class="user-name">{{ userName }}</p>
@@ -16,7 +16,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapActions, mapState, mapMutations } from 'vuex'
+import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
 import Avatar from './Avatar'
 export default Vue.extend({
   name: 'Logout',
@@ -25,10 +25,17 @@ export default Vue.extend({
     valid: false
   }),
   computed: {
+    ...mapGetters(['isAdmin']),
     ...mapState('auth', { loading: 'isAuthenticatePending' }),
     userName() {
       let userName = this.$store.state.auth.user.name
       return userName
+    },
+    dashboardNavigation() {
+      if (this.isAdmin) {
+        return 'admindashboard'
+      }
+      return 'dashboard'
     }
   },
   methods: {

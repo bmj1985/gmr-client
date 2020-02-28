@@ -157,7 +157,7 @@ export default Vue.extend({
         content: this.content,
         onUpdate: ({ getHTML }) => {
           const htmlContent = getHTML()
-          this.$store.commit('updateDetails', htmlContent)
+          this.$emit('setDetails', htmlContent)
         }
       })
     }
