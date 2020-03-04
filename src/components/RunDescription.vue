@@ -39,8 +39,8 @@ export default Vue.extend({
   },
   computed: {
     gmrEventDate() {
-      if (this.gmrEvent.date) {
-        return formatDate(this.gmrEvent.date)
+      if (this.gmrEvent.datetime) {
+        return formatDate(this.gmrEvent.datetime)
       } else return formatDate(nextTuesday())
     },
     isPendingRunEvent() {
