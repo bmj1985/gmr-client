@@ -37,6 +37,7 @@ import { nextTuesday, formatDate } from '../utils'
 import EventCard from '@/components/EventCard.vue'
 import AddEventButton from '@/components/AddEventButton.vue'
 import { models } from 'feathers-vuex'
+import { subHours } from 'date-fns'
 
 export default Vue.extend({
   name: 'Events',
@@ -46,8 +47,9 @@ export default Vue.extend({
   }),
   computed: {
     queryUpcoming() {
+      // Show upcoming events for two hours after they start.
       return {
-        datetime: { $gte: new Date().toISOString() },
+        datetime: { $gte: subHours(new Date(), 2).toISOString() },
         $sort: {
           datetime: 1
         }
