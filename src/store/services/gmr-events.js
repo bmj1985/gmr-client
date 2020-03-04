@@ -16,8 +16,10 @@ class GmrEvent extends BaseModel {
       datetime: nextTuesday(),
       details: null,
       trailhead: {
-        name: null,
-        address: null
+        name: '',
+        address: '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       },
       trailheadId: null,
       routeId: null,

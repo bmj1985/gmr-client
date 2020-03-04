@@ -34,7 +34,7 @@ export default new Router({
     },
     {
       path: '/addevent',
-      name: 'AddEventWithPreview',
+      name: 'AddEvent',
       component: () => import('./views/AddEventWithPreview.vue'),
       beforeEnter: (to, from, next) => {
         store

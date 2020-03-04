@@ -13,12 +13,14 @@
     <UserProfile v-if="activeTab === 0" />
     <UsersList class="users-list" v-if="activeTab === 1" />
     <AddEventButton v-if="activeTab === 2" />
+    <TrailheadsTable v-if="activeTab === 3" />
   </Container>
 </template>
 
 <script>
 import Vue from 'vue'
 import Container from '../UIComponents/Container'
+import TrailheadsTable from '../components/TrailheadsTable'
 import UsersList from '../components/UsersList'
 import AddEventButton from '../components/AddEventButton'
 import UserProfile from '../components/UserProfile'
@@ -27,7 +29,13 @@ export default Vue.extend({
   data: () => ({
     activeTab: 0
   }),
-  components: { Container, UsersList, AddEventButton, UserProfile }
+  components: {
+    Container,
+    UsersList,
+    AddEventButton,
+    UserProfile,
+    TrailheadsTable
+  }
 })
 </script>
 

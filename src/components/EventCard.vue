@@ -48,9 +48,6 @@ export default Vue.extend({
     },
     title() {
       return this.gmrEvent.title
-    },
-    modalWidth() {
-      return '640px'
     }
   },
   methods: {

@@ -40,7 +40,9 @@
                   {{ trailhead.name }}
                 </option>
               </b-select>
-              <button class="button">Add Trailhead</button>
+              <button class="button" type="button" @click="addTrailheadModal()">
+                Add Trailhead
+              </button>
             </div>
           </b-field>
           <b-field label="Description">
@@ -77,6 +79,7 @@ import Vue from 'vue'
 import Container from '@/UIComponents/Container'
 import WelcomeToGmr from '@/components/WelcomeToGmr'
 import RunDescription from '@/components/RunDescription'
+import TrailheadEditor from '@/components/TrailheadEditor'
 import { formatDate } from '../utils'
 import Tiptap from '../components/Tiptap'
 import { format, addHours, subHours } from 'date-fns'
@@ -111,12 +114,19 @@ export default Vue.extend({
         query: this.queryTrailheads
       }).data
     },
+    clonedTrailhead() {
+      const { Trailhead } = this.$FeathersVuex.api
+      return new Trailhead().clone()
+    },
     trailheadId() {
       return this.clone && this.clone.trailhead && this.clone.trailhead.id
     },
     queryTrailheads() {
       return {
-        $limit: 100
+        $limit: 100,
+        $sort: {
+          name: 1
+        }
       }
     },
     isTitleValid() {
@@ -147,8 +157,8 @@ export default Vue.extend({
       return this.formatAmPm ? '12' : '24'
     },
     querySameDay() {
-      const addTwo = addHours(this.date, 12)
-      const subtractTwo = subHours(this.date, 12)
+      const addTwo = addHours(this.clone.datetime, 12)
+      const subtractTwo = subHours(this.clone.datetime, 12)
       return {
         date: {
           $lte: addTwo.toISOString(),
@@ -166,6 +176,9 @@ export default Vue.extend({
     },
     windowWidth() {
       return window.innerWidth
+    },
+    isModalFullscreen() {
+      return !(this.windowWidth > 450)
     }
   },
   methods: {
@@ -173,7 +186,18 @@ export default Vue.extend({
       createEvent: 'create'
     }),
     ...mapActions('trailheads', { findTrailheads: 'find' }),
+    ...mapActions('trailheads', { createTrailhead: 'create' }),
     ...mapMutations('gmrEvents', { addItem: 'addItem' }),
+    addTrailheadModal() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: TrailheadEditor,
+        hasModalCard: false,
+        trapFocus: true,
+        fullScreen: this.isModalFullscreen,
+        props: { item: this.clonedTrailhead }
+      })
+    },
     buefyAlert(text) {
       this.$buefy.dialog.alert(text)
     },
@@ -253,6 +277,7 @@ export default Vue.extend({
     },
     confirmDate() {
       let eventCount = this.sameDayGmrEvents.length
+      console.log('eventCount:', eventCount)
       const confirmed = new Promise((resolve, reject) => {
         this.$buefy.dialog.confirm({
           title: 'Date Conflict',

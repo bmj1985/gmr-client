@@ -13,7 +13,9 @@ class Trailhead extends BaseModel {
   static instanceDefaults() {
     return {
       name: '',
-      address: ''
+      address: '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
     }
   }
 }

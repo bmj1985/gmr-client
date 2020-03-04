@@ -25,7 +25,7 @@ export default Vue.extend({
     queryNext() {
       return {
         datetime: {
-          $gte: new Date().toISOString()
+          $gte: nextTuesday().toISOString()
         },
         $sort: {
           datetime: 1
@@ -46,7 +46,6 @@ export default Vue.extend({
     ...mapActions('gmrEvents', { findGmrEvents: 'find' })
   },
   created() {
-    // Find all appointments. We'll use the getters to separate them.
     this.findGmrEvents({
       query: {}
     })

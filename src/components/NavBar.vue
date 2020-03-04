@@ -19,6 +19,9 @@
         <router-link to="/addevent" class="navbar-item" v-if="isAdmin">
           Add Event
         </router-link>
+        <router-link to="/admindashboard" class="navbar-item" v-if="isAdmin">
+          Admin Dashboard
+        </router-link>
       </b-navbar-dropdown>
     </template>
     <template slot="end">
