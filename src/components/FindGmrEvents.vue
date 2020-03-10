@@ -7,44 +7,40 @@ export default Vue.extend({
   computed: {
     ...mapState('gmrEvents', { areGmrEventsLoading: 'isFindPending' }),
     ...mapGetters('gmrEvents', { findGmrEventsInStore: 'find' }),
-    // Query for future appointments
     queryUpcoming() {
       return {
-        date: { $gte: new Date().toISOString() },
+        datetime: { $gte: new Date().toISOString() },
         $sort: {
-          date: 1
+          datetime: 1
         }
       }
     },
-    // Query for past appointments
     queryPast() {
       return {
-        date: {
+        datetime: {
           $lt: new Date().toISOString()
         },
         $sort: {
-          date: -1
+          datetime: -1
         }
       }
     },
     queryNext() {
       return {
-        date: {
+        datetime: {
           $gte: new Date().toISOString()
         },
         $sort: {
-          date: 1
+          datetime: 1
         },
         $limit: 1
       }
     },
-    // The list of upcoming appointments.
     upcomingGmrEvents() {
       return this.findGmrEventsInStore({
         query: this.queryUpcoming
       }).data
     },
-    // The list of past appointments
     pastGmrEvents() {
       return this.findGmrEventsInStore({
         query: this.queryPast
@@ -58,7 +54,6 @@ export default Vue.extend({
     ...mapActions('gmrEvents', { findGmrEvents: 'find' })
   },
   created() {
-    // Find all appointments. We'll use the getters to separate them.
     this.findGmrEvents({
       query: {}
     })

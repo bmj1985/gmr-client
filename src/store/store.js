@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './store.auth'
-import { models } from 'feathers-vuex/dist'
+import { FeathersVuex } from './feathers-client'
 
 Vue.use(Vuex)
+Vue.use(FeathersVuex)
 
 const requireModule = require.context(
   // The path where the service modules live
@@ -17,17 +18,14 @@ const servicePlugins = requireModule
   .keys()
   .map(modulePath => requireModule(modulePath).default)
 
-console.log('servicePlugins:', servicePlugins)
-
 export default new Vuex.Store({
-  state: {
-    editingEvent: null
-  },
+  state: {},
   getters: {
     isAdmin: state => {
       const admin =
         state.auth &&
         state.auth.user &&
+        state.auth.user.permissions &&
         state.auth.user.permissions.find(v => v === 'admin')
       if (admin === 'admin') {
         return true
@@ -35,29 +33,7 @@ export default new Vuex.Store({
       return false
     }
   },
-  mutations: {
-    updateTitle(state, title) {
-      state.editingEvent.title = title
-    },
-    updateDate(state, date) {
-      state.editingEvent.date = date
-    },
-    updateDetails(state, details) {
-      state.editingEvent.details = details
-    },
-    updateRouteId(state, routeId) {
-      state.editingEvent.route_id = routeId
-    },
-    updateRunRouteLink(state, runRouteLink) {
-      state.editingEvent.runRouteLink = runRouteLink
-    },
-    updateTrailhead(state, trailhead) {
-      state.editingEvent.trailhead = trailhead
-    },
-    resetForm(state) {
-      state.editingEvent = new models.api.GmrEvent()
-    }
-  },
+  mutations: {},
   actions: {},
   plugins: [...servicePlugins, auth]
 })

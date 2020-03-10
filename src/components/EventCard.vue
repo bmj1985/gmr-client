@@ -41,16 +41,13 @@ export default Vue.extend({
       return !(this.windowWidth > 450)
     },
     formattedDate() {
-      return formatDate(this.gmrEvent.date)
+      return formatDate(this.gmrEvent.datetime)
     },
     isAdmin() {
       return this.$store.getters.isAdmin
     },
     title() {
       return this.gmrEvent.title
-    },
-    modalWidth() {
-      return '640px'
     }
   },
   methods: {
@@ -60,7 +57,7 @@ export default Vue.extend({
     async deleteEvent(gmrEvent) {
       let result = await this.confirmDeleteEvent()
       if (result) {
-        this.removeEvent(gmrEvent._id).catch(err => {
+        this.removeEvent(gmrEvent.id).catch(err => {
           throw new Error(err.message)
         })
       }

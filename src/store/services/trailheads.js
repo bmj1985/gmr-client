@@ -13,16 +13,18 @@ class Trailhead extends BaseModel {
   static instanceDefaults() {
     return {
       name: '',
-      address: ''
+      address: '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
     }
   }
 }
 const servicePath = 'trailheads'
 const servicePlugin = makeServicePlugin({
+  namespace: 'trailheads',
   Model: Trailhead,
   service: feathersClient.service(servicePath),
-  servicePath,
-  name: 'trailheads'
+  servicePath
 })
 
 // Setup the client-side Feathers hooks.

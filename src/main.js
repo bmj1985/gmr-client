@@ -18,7 +18,9 @@ import {
   faListOl,
   faQuoteRight,
   faRedo,
-  faUndo
+  faUndo,
+  faEdit,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons'
 
 Vue.use(Buefy)
@@ -36,7 +38,9 @@ library.add(
   faListOl,
   faQuoteRight,
   faRedo,
-  faUndo
+  faUndo,
+  faEdit,
+  faTrash
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

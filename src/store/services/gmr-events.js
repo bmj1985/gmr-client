@@ -13,13 +13,16 @@ class GmrEvent extends BaseModel {
   // Define default properties here
   static instanceDefaults() {
     return {
-      date: nextTuesday(),
+      datetime: nextTuesday(),
       details: null,
       trailhead: {
-        name: null,
-        address: null
+        name: '',
+        address: '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       },
-      route_id: null,
+      trailheadId: null,
+      routeId: null,
       runRouteLink: null,
       title: null
     }

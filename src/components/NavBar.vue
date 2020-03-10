@@ -19,6 +19,9 @@
         <router-link to="/addevent" class="navbar-item" v-if="isAdmin">
           Add Event
         </router-link>
+        <router-link to="/admindashboard" class="navbar-item" v-if="isAdmin">
+          Admin Dashboard
+        </router-link>
       </b-navbar-dropdown>
     </template>
     <template slot="end">
@@ -44,8 +47,7 @@ export default Vue.extend({
       return (
         this.$store.state.auth &&
         this.$store.state.auth.user &&
-        this.$store.state.auth.user._id &&
-        this.$store.state.auth.user._id.length > 0
+        this.$store.state.auth.user.id
       )
     },
     isAdmin() {

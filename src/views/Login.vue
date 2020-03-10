@@ -99,6 +99,11 @@ export default Vue.extend({
           this.$router.push('Dashboard')
         })
         .catch(e => {
+          if (e.code === 401) {
+            this.$buefy.dialog.alert(
+              'This is not a valid login. Please try again.'
+            )
+          }
           // Show login page (potentially with `e.message`)
           console.error('Authentication error', e)
         })

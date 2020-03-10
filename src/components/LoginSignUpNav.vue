@@ -1,5 +1,5 @@
 <template>
-  <div class="level is-mobile">
+  <div class="level is-mobile" v-if="!shouldHideLoginOnPublicFacingPages">
     <b-navbar-item tag="div" v-if="!isSignUpPage">
       <router-link to="/signup" class="button is-light-blue login-button"
         ><strong>Sign Up</strong>
@@ -23,6 +23,9 @@ export default Vue.extend({
     },
     isLoginPage() {
       return this.$route.name === 'Login'
+    },
+    shouldHideLoginOnPublicFacingPages() {
+      return this.$route.name === 'Home' || this.$route.name === 'Events'
     }
   }
 })

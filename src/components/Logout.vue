@@ -1,6 +1,11 @@
 <template>
   <div class="level is-mobile">
-    <Avatar />
+    <router-link :to="dashboardNavigation"
+      ><div class="level">
+        <Avatar />
+        <p class="user-name">{{ userName }}</p>
+      </div></router-link
+    >
     <b-navbar-item tag="div" @click="logoutRedirect()">
       <a class="button is-light">
         Log out
@@ -11,20 +16,27 @@
 
 <script>
 import Vue from 'vue'
-import { mapActions, mapState, mapMutations } from 'vuex'
+import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
 import Avatar from './Avatar'
 export default Vue.extend({
   name: 'Logout',
   components: { Avatar },
   data: () => ({
-    valid: false,
-    user: {
-      username: '',
-      password: ''
-    }
+    valid: false
   }),
   computed: {
-    ...mapState('auth', { loading: 'isAuthenticatePending' })
+    ...mapGetters(['isAdmin']),
+    ...mapState('auth', { loading: 'isAuthenticatePending' }),
+    userName() {
+      let userName = this.$store.state.auth.user.name
+      return userName
+    },
+    dashboardNavigation() {
+      if (this.isAdmin) {
+        return 'admindashboard'
+      }
+      return 'dashboard'
+    }
   },
   methods: {
     ...mapActions('auth', ['logout']),
@@ -39,7 +51,13 @@ export default Vue.extend({
     ])
   },
   error() {
-    console.log(this.error)
+    console.log(this.error) // eslint-disable-line no-console
   }
 })
 </script>
+<style scoped>
+.user-name {
+  color: white;
+  margin-left: 0.5rem;
+}
+</style>
