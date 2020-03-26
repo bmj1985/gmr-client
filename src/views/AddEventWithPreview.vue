@@ -40,9 +40,7 @@
                   {{ trailhead.name }}
                 </option>
               </b-select>
-              <button class="button" type="button" @click="addTrailheadModal()">
-                Add Trailhead
-              </button>
+              <AddTrailheadButton />
             </div>
           </b-field>
           <b-field label="Description">
@@ -79,14 +77,20 @@ import Vue from 'vue'
 import Container from '@/UIComponents/Container'
 import WelcomeToGmr from '@/components/WelcomeToGmr'
 import RunDescription from '@/components/RunDescription'
-import TrailheadEditor from '@/components/TrailheadEditor'
+import AddTrailheadButton from '@/components/AddTrailheadButton'
 import { formatDate } from '../utils'
 import Tiptap from '../components/Tiptap'
 import { format, addHours, subHours } from 'date-fns'
 import { mapActions, mapMutations, mapGetters, mapState } from 'vuex'
 export default Vue.extend({
   name: 'AddEventWithPreview',
-  components: { Container, RunDescription, WelcomeToGmr, Tiptap },
+  components: {
+    Container,
+    RunDescription,
+    WelcomeToGmr,
+    Tiptap,
+    AddTrailheadButton
+  },
   data: () => ({
     currentGmrEvent: null,
     clone: null,
@@ -113,10 +117,6 @@ export default Vue.extend({
       return this.findTrailheadsInStore({
         query: this.queryTrailheads
       }).data
-    },
-    clonedTrailhead() {
-      const { Trailhead } = this.$FeathersVuex.api
-      return new Trailhead().clone()
     },
     trailheadId() {
       return this.clone && this.clone.trailhead && this.clone.trailhead.id
@@ -188,16 +188,6 @@ export default Vue.extend({
     ...mapActions('trailheads', { findTrailheads: 'find' }),
     ...mapActions('trailheads', { createTrailhead: 'create' }),
     ...mapMutations('gmrEvents', { addItem: 'addItem' }),
-    addTrailheadModal() {
-      this.$buefy.modal.open({
-        parent: this,
-        component: TrailheadEditor,
-        hasModalCard: false,
-        trapFocus: true,
-        fullScreen: this.isModalFullscreen,
-        props: { item: this.clonedTrailhead }
-      })
-    },
     buefyAlert(text) {
       this.$buefy.dialog.alert(text)
     },

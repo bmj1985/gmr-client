@@ -30,6 +30,7 @@
         />
       </div>
     </div>
+    <AddTrailheadButton />
   </section>
 </template>
 
@@ -37,8 +38,10 @@
 import Vue from 'vue'
 import { mapGetters, mapState, mapActions } from 'vuex'
 import TrailheadEditor from './TrailheadEditor'
+import AddTrailheadButton from './AddTrailheadButton'
 export default Vue.extend({
   name: 'TrailheadsTable',
+  components: { AddTrailheadButton },
   data: () => ({
     searchTerm: null
   }),
