@@ -6,10 +6,10 @@
       alt="GMR logo"
       src="../assets/gmr_logo_svg.svg"
     />
-    <p class="next-run">Our next run will be:</p>
+    <!-- <p class="next-run">Our next run will be:</p>
     <h2 class="date">
       {{ date }}
-    </h2>
+    </h2> -->
   </div>
 </template>
 

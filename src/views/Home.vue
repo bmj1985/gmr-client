@@ -3,14 +3,16 @@
     <div class="photo-container"></div>
     <div class="text-container">
       <WelcomeToGmr :gmrEvent="nextGmrEvent" :date="formattedDate" />
-      <RunDescription :gmrEvent="nextGmrEvent" />
+      <COVID19 />
+      <!-- <RunDescription :gmrEvent="nextGmrEvent" /> -->
     </div>
   </Container>
 </template>
 
 <script>
 import Vue from 'vue'
-import RunDescription from '../components/RunDescription'
+// import RunDescription from '../components/RunDescription'
+import COVID19 from '../components/COVID19'
 import WelcomeToGmr from '../components/WelcomeToGmr'
 import Container from '@/UIComponents/Container'
 import { mapActions, mapGetters, mapState } from 'vuex'
@@ -18,7 +20,7 @@ import { formatDate, nextTuesday } from '../utils'
 
 export default Vue.extend({
   name: 'Home',
-  components: { RunDescription, Container, WelcomeToGmr },
+  components: { COVID19, Container, WelcomeToGmr },
   computed: {
     ...mapState('gmrEvents', { areGmrEventsLoading: 'isFindPending' }),
     ...mapGetters('gmrEvents', { findGmrEventsInStore: 'find' }),
