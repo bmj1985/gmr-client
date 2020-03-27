@@ -21,10 +21,36 @@
     <FeathersVuexFind service="gmrEvents" :query="query" watch="query">
       <section
         slot-scope="{ items: events }"
-        class="check-back-later"
+        class="check-back-later covid19"
         v-if="events.length < 1 && activeTab === 0"
       >
-        {{ checkBackText }}
+        <p>
+          All group runs are currently on hold due to the ongoing pandemic.
+        </p>
+        <p>Some things you can do in the meantime:</p>
+        <ul>
+          <li>
+            -- Join the Golden Mountain Runners Strava Club and go for a run
+            around 6:15 on Tuesday evening(s). Tag GMR in the title of your run.
+          </li>
+          <li>
+            -- Tag GMR in your run photos on Instagram
+          </li>
+          <li>
+            -- Post photos or information on this page about runs you have done.
+            Photos, recaps, route plans, trail conditions, etc.
+          </li>
+          <li>
+            -- Continue to reach out to your friends in the group via phone,
+            email or text. Let's all continue to be safe, help those around us
+            who are in need and try to get through this the best we can.
+          </li>
+        </ul>
+        <p>
+          Strava Group:
+          <a href="https://bit.ly/gmr-strava">https://bit.ly/gmr-strava</a>
+        </p>
+        <!-- {{ checkBackText }} -->
       </section>
     </FeathersVuexFind>
   </Container>
@@ -120,6 +146,12 @@ export default Vue.extend({
     height: 100%;
     width: 80%;
     font-size: 1.5rem;
+  }
+  .covid19 {
+    flex-direction: column;
+    text-align: left;
+    max-width: 700px;
+    align-items: flex-start;
   }
 }
 </style>
