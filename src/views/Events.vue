@@ -62,10 +62,6 @@
             who are in need and try to get through this the best we can.
           </li>
         </ul>
-        <p>
-          Strava Group:
-          <a href="https://bit.ly/gmr-strava">https://bit.ly/gmr-strava</a>
-        </p>
         <!-- {{ checkBackText }} -->
       </section>
     </FeathersVuexFind>
