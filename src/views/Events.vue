@@ -146,12 +146,20 @@ export default Vue.extend({
     height: 100%;
     width: 80%;
     font-size: 1.5rem;
+
+    @media screen and (max-width: 450px) {
+      font-size: 1rem;
+    }
   }
   .covid19 {
+    display: flex;
+    margin: 0;
     flex-direction: column;
     text-align: left;
     max-width: 700px;
     align-items: flex-start;
+    overflow: scroll;
+    width: 100%;
   }
 }
 </style>
