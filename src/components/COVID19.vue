@@ -27,32 +27,38 @@
       </p>
       <ul>
         <li>
-          <p>
-            - Join the Golden Mountain Runners Strava Club and go for a run
-            around 6:15 on Tuesday evening(s). Tag GMR in the title of your run.
-          </p>
+          -- Join the
+          <a href="https://bit.ly/gmr-strava" target="_blank" rel="noreferrer"
+            >Golden Mountain Runners Strava Club</a
+          >
+          and go for a run around 6:15 on Tuesday evening(s). Tag GMR in the
+          title of your run.
         </li>
         <li>
-          <p>- Tag GMR in your run photos on Instagram</p>
+          -- Tag GMR in your run photos on
+          <a
+            href="https://www.instagram.com/goldenmountainrunners"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
         </li>
         <li>
-          <p>
-            -Post photos or information on this page about runs you have done.
-            Photos, recaps, route plans, trail conditions, etc.
-          </p>
+          -- Post photos or information on the
+          <a
+            href="https://www.facebook.com/groups/GoldenMountainRunners/"
+            target="_blank"
+            >Facebook page</a
+          >
+          about runs you have done. Photos, recaps, route plans, trail
+          conditions, etc.
         </li>
         <li>
-          <p>
-            - Continue to reach out to your friends in the group via phone,
-            email or text. Let's all continue to be safe, help those around us
-            who are in need and try to get through this the best we can.
-          </p>
+          -- Continue to reach out to your friends in the group via phone, email
+          or text. Let's all continue to be safe, help those around us who are
+          in need and try to get through this the best we can.
         </li>
       </ul>
-      <p>
-        Strava Group:
-        <a href="https://bit.ly/gmr-strava">https://bit.ly/gmr-strava</a>
-      </p>
     </span>
   </div>
 </template>

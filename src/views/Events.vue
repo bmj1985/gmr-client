@@ -30,15 +30,31 @@
         <p>Some things you can do in the meantime:</p>
         <ul>
           <li>
-            -- Join the Golden Mountain Runners Strava Club and go for a run
-            around 6:15 on Tuesday evening(s). Tag GMR in the title of your run.
+            -- Join the
+            <a href="https://bit.ly/gmr-strava" target="_blank" rel="noreferrer"
+              >Golden Mountain Runners Strava Club</a
+            >
+            and go for a run around 6:15 on Tuesday evening(s). Tag GMR in the
+            title of your run.
           </li>
           <li>
-            -- Tag GMR in your run photos on Instagram
+            -- Tag GMR in your run photos on
+            <a
+              href="https://www.instagram.com/goldenmountainrunners"
+              target="_blank"
+              rel="noopener"
+              >Instagram</a
+            >
           </li>
           <li>
-            -- Post photos or information on this page about runs you have done.
-            Photos, recaps, route plans, trail conditions, etc.
+            -- Post photos or information on the
+            <a
+              href="https://www.facebook.com/groups/GoldenMountainRunners/"
+              target="_blank"
+              >Facebook page</a
+            >
+            about runs you have done. Photos, recaps, route plans, trail
+            conditions, etc.
           </li>
           <li>
             -- Continue to reach out to your friends in the group via phone,
