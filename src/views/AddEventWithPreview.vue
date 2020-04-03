@@ -73,17 +73,17 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Container from '@/UIComponents/Container'
-import WelcomeToGmr from '@/components/WelcomeToGmr'
-import RunDescription from '@/components/RunDescription'
-import AddTrailheadButton from '@/components/AddTrailheadButton'
-import { formatDate } from '../utils'
-import Tiptap from '../components/Tiptap'
-import { format, addHours, subHours } from 'date-fns'
-import { mapActions, mapMutations, mapGetters, mapState } from 'vuex'
+import Vue from "vue"
+import Container from "@/UIComponents/Container"
+import WelcomeToGmr from "@/components/WelcomeToGmr"
+import RunDescription from "@/components/RunDescription"
+import AddTrailheadButton from "@/components/AddTrailheadButton"
+import { formatDate } from "../utils"
+import Tiptap from "../components/Tiptap"
+import { format, addHours, subHours } from "date-fns"
+import { mapActions, mapMutations, mapGetters, mapState } from "vuex"
 export default Vue.extend({
-  name: 'AddEventWithPreview',
+  name: "AddEventWithPreview",
   components: {
     Container,
     RunDescription,
@@ -94,7 +94,7 @@ export default Vue.extend({
   data: () => ({
     currentGmrEvent: null,
     clone: null,
-    rawEventDetails: '',
+    rawEventDetails: "",
     showWeekNumber: false,
     formatAmPm: true,
     enableSeconds: false,
@@ -109,10 +109,10 @@ export default Vue.extend({
     })
   },
   computed: {
-    ...mapState('gmrEvents', { areGmrEventsLoading: 'isFindPending' }),
-    ...mapGetters('gmrEvents', { findGmrEventsInStore: 'find' }),
-    ...mapState('trailheads', { areTrailheadsLoading: 'isFindPending' }),
-    ...mapGetters('trailheads', { findTrailheadsInStore: 'find' }),
+    ...mapState("gmrEvents", { areGmrEventsLoading: "isFindPending" }),
+    ...mapGetters("gmrEvents", { findGmrEventsInStore: "find" }),
+    ...mapState("trailheads", { areTrailheadsLoading: "isFindPending" }),
+    ...mapGetters("trailheads", { findTrailheadsInStore: "find" }),
     trailheads() {
       return this.findTrailheadsInStore({
         query: this.queryTrailheads
@@ -150,17 +150,17 @@ export default Vue.extend({
       )
     },
     time() {
-      const eventTime = format(this.clone.datetime, 'h:mma')
+      const eventTime = format(this.clone.datetime, "h:mma")
       return eventTime
     },
     format() {
-      return this.formatAmPm ? '12' : '24'
+      return this.formatAmPm ? "12" : "24"
     },
     querySameDay() {
       const addTwo = addHours(this.clone.datetime, 12)
       const subtractTwo = subHours(this.clone.datetime, 12)
       return {
-        date: {
+        datetime: {
           $lte: addTwo.toISOString(),
           $gte: subtractTwo.toISOString()
         }
@@ -182,20 +182,20 @@ export default Vue.extend({
     }
   },
   methods: {
-    ...mapActions('gmrEvents', {
-      createEvent: 'create'
+    ...mapActions("gmrEvents", {
+      createEvent: "create"
     }),
-    ...mapActions('trailheads', { findTrailheads: 'find' }),
-    ...mapActions('trailheads', { createTrailhead: 'create' }),
-    ...mapMutations('gmrEvents', { addItem: 'addItem' }),
+    ...mapActions("trailheads", { findTrailheads: "find" }),
+    ...mapActions("trailheads", { createTrailhead: "create" }),
+    ...mapMutations("gmrEvents", { addItem: "addItem" }),
     buefyAlert(text) {
       this.$buefy.dialog.alert(text)
     },
     alertTitle() {
-      this.buefyAlert('Please enter a title.')
+      this.buefyAlert("Please enter a title.")
     },
     alertTrailhead() {
-      this.buefyAlert('Please enter a trailhead.')
+      this.buefyAlert("Please enter a trailhead.")
     },
     async onSubmit(event) {
       this.clone.trailheadId = this.clone.trailhead.id
@@ -209,7 +209,7 @@ export default Vue.extend({
         return
       }
       if (!this.isDetailValid) {
-        this.buefyAlert('Please enter run details.')
+        this.buefyAlert("Please enter run details.")
         return
       }
       if (!this.isRunRouteLinkValid) {
@@ -221,7 +221,7 @@ export default Vue.extend({
       if (this.sameDayGmrEvents.length) {
         let scheduleMultipleEvents = await this.confirmDate()
         if (!scheduleMultipleEvents) {
-          this.$router.push('/events')
+          this.$router.push("/events")
           return
         }
       }
@@ -231,13 +231,13 @@ export default Vue.extend({
           if (result) {
             // this.$store.commit('resetForm')
             this.shouldClearContent = true
-          } else this.$router.push('/events')
+          } else this.$router.push("/events")
         })
         .catch(err => {
           console.log(err) // eslint-disable-line no-console
           if (err.code === 409) {
             this.$buefy.dialog.alert(
-              'Event is duplicate and has already been created.'
+              "Event is duplicate and has already been created."
             )
           }
         })
@@ -254,11 +254,11 @@ export default Vue.extend({
     confirmRunRouteLink() {
       const confirmed = new Promise((resolve, reject) => {
         this.$buefy.dialog.confirm({
-          title: 'Missing Run Route Link',
-          message: 'Did  you want to add a run route link?',
-          cancelText: 'Yes',
-          confirmText: 'Continue without one.',
-          type: 'is-success',
+          title: "Missing Run Route Link",
+          message: "Did  you want to add a run route link?",
+          cancelText: "Yes",
+          confirmText: "Continue without one.",
+          type: "is-success",
           onConfirm: () => resolve(true),
           onCancel: () => resolve(false)
         })
@@ -267,14 +267,14 @@ export default Vue.extend({
     },
     confirmDate() {
       let eventCount = this.sameDayGmrEvents.length
-      console.log('eventCount:', eventCount)
+      console.log("eventCount:", eventCount)
       const confirmed = new Promise((resolve, reject) => {
         this.$buefy.dialog.confirm({
-          title: 'Date Conflict',
+          title: "Date Conflict",
           message: `You already have ${eventCount} event(s) scheduled for that date. Are you sure you want to continue?`,
           cancelText: "Don't schedule",
-          confirmText: 'Yes, proceed anyway.',
-          type: 'is-success',
+          confirmText: "Yes, proceed anyway.",
+          type: "is-success",
           onConfirm: () => resolve(true),
           onCancel: () => resolve(false)
         })
@@ -284,10 +284,10 @@ export default Vue.extend({
     async confirmAddAnotherEvent() {
       const confirmed = await new Promise((resolve, reject) => {
         this.$buefy.dialog.confirm({
-          title: 'Event was created!',
-          message: 'Do you want to add another event?',
+          title: "Event was created!",
+          message: "Do you want to add another event?",
           confirmText: "No, I'm done.",
-          cancelText: 'Yes! More events!',
+          cancelText: "Yes! More events!",
           onConfirm: () => resolve(false),
           onCancel: () => resolve(true)
         })
@@ -295,8 +295,8 @@ export default Vue.extend({
       return confirmed
     },
     parseRunRouteLink(string) {
-      if (string.indexOf('http') === -1 && string.length > 5) {
-        return 'https://' + string
+      if (string.indexOf("http") === -1 && string.length > 5) {
+        return "https://" + string
       }
       return string
     }
@@ -395,6 +395,7 @@ export default Vue.extend({
     text-shadow: none;
     text-align: start;
     -webkit-writing-mode: horizontal-tb !important;
+    writing-mode: horizontal-tb !important;
     -webkit-box-direction: normal;
     font-size: 1.5rem;
     padding-left: 10px;

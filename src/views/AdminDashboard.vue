@@ -7,6 +7,7 @@
           <b-tab-item label="Manage Users"></b-tab-item>
           <b-tab-item label="Manage Events"></b-tab-item>
           <b-tab-item label="Manage Trailheads"></b-tab-item>
+          <b-tab-item label="Manage Products"></b-tab-item>
         </b-tabs>
       </section>
     </div>
@@ -14,18 +15,20 @@
     <UsersList class="users-list" v-if="activeTab === 1" />
     <AddEventButton v-if="activeTab === 2" />
     <TrailheadsTable v-if="activeTab === 3" />
+    <ProductsTable v-if="activeTab === 4" />
   </Container>
 </template>
 
 <script>
-import Vue from 'vue'
-import Container from '../UIComponents/Container'
-import TrailheadsTable from '../components/TrailheadsTable'
-import UsersList from '../components/UsersList'
-import AddEventButton from '../components/AddEventButton'
-import UserProfile from '../components/UserProfile'
+import Vue from "vue"
+import Container from "../UIComponents/Container"
+import TrailheadsTable from "../components/TrailheadsTable"
+import ProductsTable from "../components/ProductsTable"
+import UsersList from "../components/UsersList"
+import AddEventButton from "../components/AddEventButton"
+import UserProfile from "../components/UserProfile"
 export default Vue.extend({
-  name: 'AdminDashboard',
+  name: "AdminDashboard",
   data: () => ({
     activeTab: 0
   }),
@@ -34,7 +37,8 @@ export default Vue.extend({
     UsersList,
     AddEventButton,
     UserProfile,
-    TrailheadsTable
+    TrailheadsTable,
+    ProductsTable
   }
 })
 </script>

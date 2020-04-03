@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import Vue from "vue"
+import { mapGetters } from "vuex"
 export default Vue.extend({
-  name: 'AddEventButton',
+  name: "AddEventButton",
   computed: {
-    ...mapGetters(['isAdmin'])
+    ...mapGetters(["isAdmin"])
   }
 })
 </script>

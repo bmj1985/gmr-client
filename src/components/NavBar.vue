@@ -22,6 +22,9 @@
         <router-link to="/admindashboard" class="navbar-item" v-if="isAdmin">
           Admin Dashboard
         </router-link>
+        <router-link to="/shop" class="navbar-item">
+          Shop
+        </router-link>
       </b-navbar-dropdown>
     </template>
     <template slot="end">
@@ -36,11 +39,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 // import LoginSignUpNav from './LoginSignUpNav'
-import Logout from './Logout'
+import Logout from "./Logout"
 export default Vue.extend({
-  name: 'NavBar',
+  name: "NavBar",
   components: { Logout },
   computed: {
     isUser() {
@@ -58,7 +61,7 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
-@import '../styles/_global';
+@import "../styles/_global";
 .login-button {
   width: 100%;
   min-width: 83px;

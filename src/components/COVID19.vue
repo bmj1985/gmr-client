@@ -79,10 +79,10 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 
 export default Vue.extend({
-  name: 'COVID19'
+  name: "COVID19"
 })
 </script>
 
