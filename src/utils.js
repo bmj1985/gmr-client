@@ -5,7 +5,7 @@ import {
   addHours,
   addMinutes,
   format
-} from 'date-fns'
+} from "date-fns"
 
 function nextTuesday() {
   const oneWeekFromToday = addDays(new Date(), 7)
@@ -17,7 +17,7 @@ function nextTuesday() {
 }
 
 function formatDate(date) {
-  return format(date, 'dddd MMMM Do, YYYY h:mm aa')
+  return format(date, "dddd MMMM Do, YYYY h:mm aa")
 }
 
 function emailIsValid(email) {
@@ -49,4 +49,15 @@ function debounce(fn, delay) {
   }
 }
 
-export { emailIsValid, debounce, passwordIsValid, nextTuesday, formatDate }
+function priceInDollars(priceInCents) {
+  return `$${(priceInCents / 100).toFixed(2)}`
+}
+
+export {
+  emailIsValid,
+  debounce,
+  passwordIsValid,
+  nextTuesday,
+  formatDate,
+  priceInDollars
+}

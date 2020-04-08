@@ -15,7 +15,7 @@
         class="event-cards"
       >
         <EventCard v-for="event in events" :key="event.id" :gmrEvent="event" />
-        <AddEventButton />
+        <AddItemButton itemName="Event" />
       </section>
     </FeathersVuexFind>
     <FeathersVuexFind service="gmrEvents" :query="query" watch="query">
@@ -69,17 +69,17 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Container from '@/UIComponents/Container'
-import { nextTuesday, formatDate } from '../utils'
-import EventCard from '@/components/EventCard.vue'
-import AddEventButton from '@/components/AddEventButton.vue'
-import { models } from 'feathers-vuex'
-import { subHours } from 'date-fns'
+import Vue from "vue"
+import Container from "@/UIComponents/Container"
+import { nextTuesday, formatDate } from "../utils"
+import EventCard from "@/components/EventCard.vue"
+import AddItemButton from "@/components/AddItemButton.vue"
+import { models } from "feathers-vuex"
+import { subHours } from "date-fns"
 
 export default Vue.extend({
-  name: 'Events',
-  components: { Container, EventCard, AddEventButton },
+  name: "Events",
+  components: { Container, EventCard, AddItemButton },
   data: () => ({
     activeTab: 0
   }),

@@ -77,12 +77,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import EditTiptap from './EditTiptap'
-import { parse } from 'date-fns'
-import { mapActions } from 'vuex'
+import Vue from "vue"
+import EditTiptap from "./EditTiptap"
+import { parse } from "date-fns"
+import { mapActions } from "vuex"
 export default Vue.extend({
-  name: 'EditEventForm',
+  name: "EditEventForm",
   components: { EditTiptap },
   props: { gmrEvent: { type: Object } },
   data: () => ({
@@ -104,12 +104,12 @@ export default Vue.extend({
       }
     },
     format() {
-      return this.formatAmPm ? '12' : '24'
+      return this.formatAmPm ? "12" : "24"
     }
   },
   methods: {
-    ...mapActions('gmrEvents', {
-      updateEvent: 'update'
+    ...mapActions("gmrEvents", {
+      updateEvent: "update"
     }),
     onSubmit() {
       this.clone.commit()
@@ -123,7 +123,7 @@ export default Vue.extend({
         })
     },
     alertEventEdited() {
-      this.$buefy.dialog.alert('Event successfully edited!')
+      this.$buefy.dialog.alert("Event successfully edited!")
     }
   }
 })

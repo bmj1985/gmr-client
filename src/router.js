@@ -98,7 +98,13 @@ export default new Router({
     {
       path: "/shop/:id/",
       name: "Product",
-      component: () => import("./views/Product.vue")
+      component: () => import("./views/Product.vue"),
+      props: true
+    },
+    {
+      path: "/checkout",
+      name: "Checkout",
+      component: () => import("./views/Checkout.vue")
     }
   ]
 })

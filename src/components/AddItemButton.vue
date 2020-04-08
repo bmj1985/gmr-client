@@ -1,7 +1,7 @@
 <template>
-  <router-link to="/addevent" v-if="isAdmin" class="add-button-container">
+  <router-link :to="routerLinkTo" v-if="isAdmin" class="add-button-container">
     <font-awesome-icon :icon="['fas', 'plus-circle']" id="add-event-button" />
-    <p>Add Event</p>
+    <p>Add {{ itemName }}</p>
   </router-link>
 </template>
 
@@ -9,9 +9,17 @@
 import Vue from "vue"
 import { mapGetters } from "vuex"
 export default Vue.extend({
-  name: "AddEventButton",
+  name: "AddItemButton",
+  props: { itemName: { type: String } },
   computed: {
-    ...mapGetters(["isAdmin"])
+    ...mapGetters(["isAdmin"]),
+    routerLinkTo() {
+      if (this.itemName === "Event") {
+        return "/addevent"
+      } else if (this.itemName === "Product") {
+        return "/addproduct"
+      } else return null
+    }
   }
 })
 </script>

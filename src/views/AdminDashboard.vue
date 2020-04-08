@@ -13,7 +13,7 @@
     </div>
     <UserProfile v-if="activeTab === 0" />
     <UsersList class="users-list" v-if="activeTab === 1" />
-    <AddEventButton v-if="activeTab === 2" />
+    <AddItemButton v-if="activeTab === 2" itemName="Event" />
     <TrailheadsTable v-if="activeTab === 3" />
     <ProductsTable v-if="activeTab === 4" />
   </Container>
@@ -25,7 +25,7 @@ import Container from "../UIComponents/Container"
 import TrailheadsTable from "../components/TrailheadsTable"
 import ProductsTable from "../components/ProductsTable"
 import UsersList from "../components/UsersList"
-import AddEventButton from "../components/AddEventButton"
+import AddItemButton from "../components/AddItemButton"
 import UserProfile from "../components/UserProfile"
 export default Vue.extend({
   name: "AdminDashboard",
@@ -35,7 +35,7 @@ export default Vue.extend({
   components: {
     Container,
     UsersList,
-    AddEventButton,
+    AddItemButton,
     UserProfile,
     TrailheadsTable,
     ProductsTable

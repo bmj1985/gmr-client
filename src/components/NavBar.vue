@@ -26,13 +26,44 @@
           Shop
         </router-link>
       </b-navbar-dropdown>
+      <b-navbar-dropdown label="Actions" v-if="isAdmin">
+        <div class="navbar-item">
+          <input type="checkbox" v-model="toggleAdminView" />
+          Toggle Admin View
+        </div>
+      </b-navbar-dropdown>
     </template>
     <template slot="end">
-      <!-- <div v-if="!isUser">
+      <div
+        v-if="numberOfItemsInCart > 0"
+        class="shopping-cart-icon"
+        @click="navigateToCheckout"
+      >
+        <font-awesome-icon
+          :icon="['fas', 'shopping-cart']"
+          id="shopping-cart"
+        />
+        <p id="shopping-cart-icon-number">({{ numberOfItemsInCart }})</p>
+      </div>
+      <div v-if="!isUser">
         <LoginSignUpNav />
-      </div> -->
+      </div>
       <div v-if="isUser">
-        <Logout />
+        <b-dropdown aria-role="list" position="is-bottom-left">
+          <div class="avatar">
+            <Avatar />
+          </div>
+          <b-dropdown-item aria-role="listitem"
+            ><router-link :to="`/${dashboardNavigation}`"
+              ><b-navbar-item>Dashboard</b-navbar-item></router-link
+            ></b-dropdown-item
+          >
+          <b-dropdown-item tag="div" @click="logoutRedirect()">
+            <a class="button is-light">
+              Log out
+            </a>
+          </b-dropdown-item>
+        </b-dropdown>
       </div>
     </template>
   </b-navbar>
@@ -40,22 +71,64 @@
 
 <script>
 import Vue from "vue"
-// import LoginSignUpNav from './LoginSignUpNav'
-import Logout from "./Logout"
+import LoginSignUpNav from "./LoginSignUpNav"
+import Avatar from "@/components/Avatar"
+import { mapActions, mapMutations, mapGetters, mapState } from "vuex"
 export default Vue.extend({
   name: "NavBar",
-  components: { Logout },
+  components: { LoginSignUpNav, Avatar },
+  data: () => ({ toggleAdminView: false, valid: false }),
   computed: {
+    ...mapGetters(["isAdmin"]),
+    ...mapState("auth", { loading: "isAuthenticatePending" }),
+    userName() {
+      console.log(this.$store.getters.auth && this.$store.getters.auth.user)
+      let userName = this.$store.state.auth.user.name
+      return userName
+    },
+    dashboardNavigation() {
+      if (this.isAdmin) {
+        return "admindashboard"
+      }
+      return "dashboard"
+    },
     isUser() {
-      return (
-        this.$store.state.auth &&
-        this.$store.state.auth.user &&
-        this.$store.state.auth.user.id
+      console.log(
+        "isUser",
+        this.$store.getters.auth && this.$store.getters.auth.user
       )
+      return this.$store.getters.isUser
     },
     isAdmin() {
       return this.$store.getters.isAdmin
+    },
+    shoppingCart() {
+      return this.$store.state.shoppingCart
+    },
+    numberOfItemsInCart() {
+      return this.shoppingCart.reduce(
+        (acc, currVal) => (acc += currVal.quantity),
+        0
+      )
     }
+  },
+  methods: {
+    ...mapActions("auth", ["logout"]),
+    logoutRedirect() {
+      this.logout().then(() => {
+        this.$router.push("/")
+        this.clearAll()
+      })
+    },
+    ...mapMutations("users", [
+      "clearAll" // lets you do `this.clearAll()` inside the component
+    ]),
+    navigateToCheckout() {
+      this.$router.push("/checkout")
+    }
+  },
+  error() {
+    console.log(this.error) // eslint-disable-line no-console
   }
 })
 </script>
@@ -88,5 +161,26 @@ export default Vue.extend({
 }
 .navbar {
   align-items: center;
+}
+.shopping-cart-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  color: white;
+  #shopping-cart-icon-number {
+    margin-left: 0.25rem;
+  }
+}
+.user-name {
+  color: black;
+  margin-left: 0.5rem;
+}
+.button {
+  width: 100%;
+}
+.avatar {
+  margin-right: 10px;
 }
 </style>

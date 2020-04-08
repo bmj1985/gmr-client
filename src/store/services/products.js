@@ -60,7 +60,7 @@ class Product extends BaseModel {
             ],
             has_more: false,
             total_count: 1,
-            url: "/v1/skus?product=1001&active=true"
+            url: "/v1/skus?product=1001"
           },
           type: "good",
           updated: 1585602016,
