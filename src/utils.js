@@ -5,7 +5,7 @@ import {
   addHours,
   addMinutes,
   format
-} from 'date-fns'
+} from "date-fns"
 
 function nextTuesday() {
   const oneWeekFromToday = addDays(new Date(), 7)
@@ -17,7 +17,7 @@ function nextTuesday() {
 }
 
 function formatDate(date) {
-  return format(date, 'dddd MMMM Do, YYYY h:mm aa')
+  return format(date, "dddd MMMM Do, YYYY h:mm aa")
 }
 
 function emailIsValid(email) {

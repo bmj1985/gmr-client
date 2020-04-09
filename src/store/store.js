@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import auth from './store.auth'
-import { FeathersVuex } from './feathers-client'
+import Vue from "vue"
+import Vuex from "vuex"
+import auth from "./store.auth"
+import { FeathersVuex } from "./feathers-client"
 
 Vue.use(Vuex)
 Vue.use(FeathersVuex)
 
 const requireModule = require.context(
   // The path where the service modules live
-  './services',
+  "./services",
   // Whether to look in subfolders
   false,
   // Only include .js files (prevents duplicate imports`)
@@ -26,8 +26,8 @@ export default new Vuex.Store({
         state.auth &&
         state.auth.user &&
         state.auth.user.permissions &&
-        state.auth.user.permissions.find(v => v === 'admin')
-      if (admin === 'admin') {
+        state.auth.user.permissions.find(v => v === "admin")
+      if (admin === "admin") {
         return true
       }
       return false

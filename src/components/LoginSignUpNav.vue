@@ -14,18 +14,18 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 export default Vue.extend({
-  name: 'LoginSignUpNav',
+  name: "LoginSignUpNav",
   computed: {
     isSignUpPage() {
-      return this.$route.name === 'SignUp'
+      return this.$route.name === "SignUp"
     },
     isLoginPage() {
-      return this.$route.name === 'Login'
+      return this.$route.name === "Login"
     },
     shouldHideLoginOnPublicFacingPages() {
-      return this.$route.name === 'Home' || this.$route.name === 'Events'
+      return this.$route.name === "Home" || this.$route.name === "Events"
     }
   }
 })

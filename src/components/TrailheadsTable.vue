@@ -35,19 +35,19 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { mapGetters, mapState, mapActions } from 'vuex'
-import TrailheadEditor from './TrailheadEditor'
-import AddTrailheadButton from './AddTrailheadButton'
+import Vue from "vue"
+import { mapGetters, mapState, mapActions } from "vuex"
+import TrailheadEditor from "./TrailheadEditor"
+import AddTrailheadButton from "./AddTrailheadButton"
 export default Vue.extend({
-  name: 'TrailheadsTable',
+  name: "TrailheadsTable",
   components: { AddTrailheadButton },
   data: () => ({
     searchTerm: null
   }),
   computed: {
-    ...mapState('trailheads', { areTrailheadsLoading: 'isFindPending' }),
-    ...mapGetters('trailheads', { findTrailheadsInStore: 'find' }),
+    ...mapState("trailheads", { areTrailheadsLoading: "isFindPending" }),
+    ...mapGetters("trailheads", { findTrailheadsInStore: "find" }),
     trailheads() {
       let trailheads = this.findTrailheadsInStore({
         query: this.queryTrailheads
@@ -65,13 +65,13 @@ export default Vue.extend({
     }
   },
   methods: {
-    ...mapActions('trailheads', { findTrailheads: 'find' }),
+    ...mapActions("trailheads", { findTrailheads: "find" }),
     cloneTrailhead(trailhead) {
       const { Trailhead } = this.$FeathersVuex.api
       return new Trailhead(trailhead).clone()
     },
     editTrailheadModal(trailhead) {
-      console.log('TRAILHEAD', this.cloneTrailhead(trailhead))
+      console.log("TRAILHEAD", this.cloneTrailhead(trailhead))
       this.$buefy.modal.open({
         parent: this,
         component: TrailheadEditor,
@@ -82,7 +82,7 @@ export default Vue.extend({
       })
     },
     async deleteTrailhead(trailhead) {
-      console.log('TRAILHEAD:', trailhead)
+      console.log("TRAILHEAD:", trailhead)
       let result = await this.confirmDeleteTrailhead()
       if (result) {
         trailhead.remove()
@@ -91,11 +91,11 @@ export default Vue.extend({
     async confirmDeleteTrailhead() {
       const confirmed = await new Promise((resolve, reject) => {
         this.$buefy.dialog.confirm({
-          title: 'Deleting trailhead',
+          title: "Deleting trailhead",
           message:
-            'Are you sure you want to <b>delete</b> this trailhead? This action cannot be undone.',
-          confirmText: 'Delete Trailhead',
-          type: 'is-danger',
+            "Are you sure you want to <b>delete</b> this trailhead? This action cannot be undone.",
+          confirmText: "Delete Trailhead",
+          type: "is-danger",
           hasIcon: true,
           onConfirm: () => resolve(true),
           onCancel: () => resolve(false)

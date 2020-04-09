@@ -20,14 +20,14 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { formatDate } from '../utils'
-import RunDescription from './RunDescription'
-import EditEventForm from './EditEventForm'
-import { mapActions } from 'vuex'
+import Vue from "vue"
+import { formatDate } from "../utils"
+import RunDescription from "./RunDescription"
+import EditEventForm from "./EditEventForm"
+import { mapActions } from "vuex"
 
 export default Vue.extend({
-  name: 'EventCard',
+  name: "EventCard",
   components: { RunDescription },
   props: { gmrEvent: { type: Object } },
   data: () => ({
@@ -51,8 +51,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    ...mapActions('gmrEvents', {
-      removeEvent: 'remove'
+    ...mapActions("gmrEvents", {
+      removeEvent: "remove"
     }),
     async deleteEvent(gmrEvent) {
       let result = await this.confirmDeleteEvent()
@@ -65,11 +65,11 @@ export default Vue.extend({
     async confirmDeleteEvent() {
       const confirmed = await new Promise((resolve, reject) => {
         this.$buefy.dialog.confirm({
-          title: 'Deleting event',
+          title: "Deleting event",
           message:
-            'Are you sure you want to <b>delete</b> this event? This action cannot be undone.',
-          confirmText: 'Delete Event',
-          type: 'is-danger',
+            "Are you sure you want to <b>delete</b> this event? This action cannot be undone.",
+          confirmText: "Delete Event",
+          type: "is-danger",
           hasIcon: true,
           onConfirm: () => resolve(true),
           onCancel: () => resolve(false)
