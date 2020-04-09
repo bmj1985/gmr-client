@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 // import RunDescription from '../components/RunDescription'
-import COVID19 from '../components/COVID19'
-import WelcomeToGmr from '../components/WelcomeToGmr'
-import Container from '@/UIComponents/Container'
-import { mapActions, mapGetters, mapState } from 'vuex'
-import { formatDate, nextTuesday } from '../utils'
+import COVID19 from "../components/COVID19"
+import WelcomeToGmr from "../components/WelcomeToGmr"
+import Container from "@/UIComponents/Container"
+import { mapActions, mapGetters, mapState } from "vuex"
+import { formatDate, nextTuesday } from "../utils"
 
 export default Vue.extend({
-  name: 'Home',
+  name: "Home",
   components: { COVID19, Container, WelcomeToGmr },
   computed: {
-    ...mapState('gmrEvents', { areGmrEventsLoading: 'isFindPending' }),
-    ...mapGetters('gmrEvents', { findGmrEventsInStore: 'find' }),
+    ...mapState("gmrEvents", { areGmrEventsLoading: "isFindPending" }),
+    ...mapGetters("gmrEvents", { findGmrEventsInStore: "find" }),
     queryNext() {
       return {
         datetime: {
@@ -45,7 +45,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    ...mapActions('gmrEvents', { findGmrEvents: 'find' })
+    ...mapActions("gmrEvents", { findGmrEvents: "find" })
   },
   created() {
     this.findGmrEvents({
@@ -59,7 +59,7 @@ export default Vue.extend({
 .photo-container {
   flex: 1;
   height: 100%;
-  background-image: url('../assets/northtable.jpg');
+  background-image: url("../assets/northtable.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   @media only screen and (max-width: 760px) {

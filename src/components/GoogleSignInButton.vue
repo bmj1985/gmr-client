@@ -17,26 +17,26 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import API_URL from '@/API_URL.js'
+import Vue from "vue"
+import API_URL from "@/API_URL.js"
 export default Vue.extend({
-  name: 'GoogleSignInButton',
+  name: "GoogleSignInButton",
   data: () => ({
     API_URL: `${API_URL}/oauth/google`
   }),
   computed: {
     buttonText() {
-      if (this.$route.name === 'SignUp') {
-        return 'SIGN UP WITH GOOGLE'
+      if (this.$route.name === "SignUp") {
+        return "SIGN UP WITH GOOGLE"
       }
-      return 'LOGIN WITH GOOGLE'
+      return "LOGIN WITH GOOGLE"
     }
   }
 })
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
 .google-button {
   min-height: 2rem;
   width: 100%;
@@ -67,7 +67,7 @@ export default Vue.extend({
   align-self: center;
 }
 .button-text {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 500;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.54);

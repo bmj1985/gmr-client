@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Container from '../UIComponents/Container'
-import UserProfile from '../components/UserProfile'
+import Vue from "vue"
+import Container from "../UIComponents/Container"
+import UserProfile from "../components/UserProfile"
 export default Vue.extend({
-  name: 'Dashboard',
+  name: "Dashboard",
   components: { UserProfile, Container },
   data: () => ({
     activeTab: 0

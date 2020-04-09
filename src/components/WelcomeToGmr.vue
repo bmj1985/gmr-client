@@ -14,15 +14,15 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 
 export default Vue.extend({
-  name: 'WelcomeToGmr',
+  name: "WelcomeToGmr",
   props: { gmrEvent: { type: Object }, date: { type: String } },
   data() {
     return {
       pendingRunDetails:
-        'Details coming soon! Runs are usually posted between the Thursday and Monday prior.'
+        "Details coming soon! Runs are usually posted between the Thursday and Monday prior."
     }
   }
 })

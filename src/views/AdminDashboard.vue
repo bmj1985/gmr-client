@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Container from '../UIComponents/Container'
-import TrailheadsTable from '../components/TrailheadsTable'
-import UsersList from '../components/UsersList'
-import AddEventButton from '../components/AddEventButton'
-import UserProfile from '../components/UserProfile'
+import Vue from "vue"
+import Container from "../UIComponents/Container"
+import TrailheadsTable from "../components/TrailheadsTable"
+import UsersList from "../components/UsersList"
+import AddEventButton from "../components/AddEventButton"
+import UserProfile from "../components/UserProfile"
 export default Vue.extend({
-  name: 'AdminDashboard',
+  name: "AdminDashboard",
   data: () => ({
     activeTab: 0
   }),

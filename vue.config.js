@@ -1,3 +1,3 @@
 module.exports = {
-  transpileDependencies: ['feathers-vuex']
+  transpileDependencies: ["feathers-vuex"]
 }

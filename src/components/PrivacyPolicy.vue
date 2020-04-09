@@ -48,10 +48,10 @@
   </Container>
 </template>
 <script>
-import Vue from 'vue'
-import Container from '../UIComponents/Container'
+import Vue from "vue"
+import Container from "../UIComponents/Container"
 export default Vue.extend({
-  name: 'Privacy Policy',
+  name: "Privacy Policy",
   components: { Container }
 })
 </script>

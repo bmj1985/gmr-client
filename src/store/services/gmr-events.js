@@ -1,23 +1,23 @@
 import feathersClient, {
   makeServicePlugin,
   BaseModel
-} from '../feathers-client'
-import { nextTuesday } from '../../utils'
+} from "../feathers-client"
+import { nextTuesday } from "../../utils"
 
 class GmrEvent extends BaseModel {
   // constructor(data, options) {
   //   super(data, options)
   // }
   // Required for $FeathersVuex plugin to work after production transpile.
-  static modelName = 'GmrEvent'
+  static modelName = "GmrEvent"
   // Define default properties here
   static instanceDefaults() {
     return {
       datetime: nextTuesday(),
       details: null,
       trailhead: {
-        name: '',
-        address: '',
+        name: "",
+        address: "",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       },
@@ -28,9 +28,9 @@ class GmrEvent extends BaseModel {
     }
   }
 }
-const servicePath = 'gmr-events'
+const servicePath = "gmr-events"
 const servicePlugin = makeServicePlugin({
-  namespace: 'gmrEvents',
+  namespace: "gmrEvents",
   Model: GmrEvent,
   service: feathersClient.service(servicePath),
   servicePath

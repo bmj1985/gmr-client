@@ -15,39 +15,39 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
-import Avatar from './Avatar'
+import Vue from "vue"
+import { mapActions, mapState, mapMutations, mapGetters } from "vuex"
+import Avatar from "./Avatar"
 export default Vue.extend({
-  name: 'Logout',
+  name: "Logout",
   components: { Avatar },
   data: () => ({
     valid: false
   }),
   computed: {
-    ...mapGetters(['isAdmin']),
-    ...mapState('auth', { loading: 'isAuthenticatePending' }),
+    ...mapGetters(["isAdmin"]),
+    ...mapState("auth", { loading: "isAuthenticatePending" }),
     userName() {
       let userName = this.$store.state.auth.user.name
       return userName
     },
     dashboardNavigation() {
       if (this.isAdmin) {
-        return 'admindashboard'
+        return "admindashboard"
       }
-      return 'dashboard'
+      return "dashboard"
     }
   },
   methods: {
-    ...mapActions('auth', ['logout']),
+    ...mapActions("auth", ["logout"]),
     logoutRedirect() {
       this.logout().then(() => {
-        this.$router.push('/')
+        this.$router.push("/")
         this.clearAll()
       })
     },
-    ...mapMutations('users', [
-      'clearAll' // lets you do `this.clearAll()` inside the component
+    ...mapMutations("users", [
+      "clearAll" // lets you do `this.clearAll()` inside the component
     ])
   },
   error() {

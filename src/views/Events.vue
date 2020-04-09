@@ -69,16 +69,16 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Container from '@/UIComponents/Container'
-import { nextTuesday, formatDate } from '../utils'
-import EventCard from '@/components/EventCard.vue'
-import AddEventButton from '@/components/AddEventButton.vue'
-import { models } from 'feathers-vuex'
-import { subHours } from 'date-fns'
+import Vue from "vue"
+import Container from "@/UIComponents/Container"
+import { nextTuesday, formatDate } from "../utils"
+import EventCard from "@/components/EventCard.vue"
+import AddEventButton from "@/components/AddEventButton.vue"
+import { models } from "feathers-vuex"
+import { subHours } from "date-fns"
 
 export default Vue.extend({
-  name: 'Events',
+  name: "Events",
   components: { Container, EventCard, AddEventButton },
   data: () => ({
     activeTab: 0

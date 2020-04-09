@@ -103,8 +103,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import Vue from "vue"
+import { Editor, EditorContent, EditorMenuBar } from "tiptap"
 import {
   Blockquote,
   Heading,
@@ -121,9 +121,9 @@ import {
   Strike,
   Underline,
   History
-} from 'tiptap-extensions'
+} from "tiptap-extensions"
 export default Vue.extend({
-  name: 'Tiptap',
+  name: "Tiptap",
   props: { clear: Boolean },
   components: {
     EditorContent,
@@ -149,14 +149,14 @@ export default Vue.extend({
           new Underline(),
           new History()
         ],
-        content: '<p>Details go here....</p>',
+        content: "<p>Details go here....</p>",
         onFocus: () => {
           this.editor.clearContent()
         },
         onUpdate: ({ getHTML }) => {
           const htmlContent = getHTML()
           this.details = htmlContent
-          this.$emit('setDetails', this.details)
+          this.$emit("setDetails", this.details)
         }
       }),
       details: null
@@ -164,7 +164,7 @@ export default Vue.extend({
   },
   watch: {
     clear() {
-      this.editor.setContent('<p>Details go here....</p>')
+      this.editor.setContent("<p>Details go here....</p>")
     }
   },
   beforeDestroy() {

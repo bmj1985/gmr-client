@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 export default Vue.extend({
-  name: 'Avatar',
+  name: "Avatar",
   data: () => ({
-    defaultProfilePicture: require('@/assets/defaultProfilePic.png')
+    defaultProfilePicture: require("@/assets/defaultProfilePic.png")
   }),
   computed: {
     profilePicture() {

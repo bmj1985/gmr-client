@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 export default Vue.extend({
-  name: 'RunDetailsHTML',
-  props: ['details']
+  name: "RunDetailsHTML",
+  props: ["details"]
 })
 </script>
 
 <style lang="scss">
-@import '../styles/_global';
+@import "../styles/_global";
 
 .rawHtml {
   width: calc(100% - 17px);

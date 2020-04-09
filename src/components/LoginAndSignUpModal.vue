@@ -75,41 +75,41 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { mapActions, mapState } from 'vuex'
-import GoogleSignInButton from '@/components/GoogleSignInButton'
+import Vue from "vue"
+import { mapActions, mapState } from "vuex"
+import GoogleSignInButton from "@/components/GoogleSignInButton"
 export default Vue.extend({
-  name: 'Login',
+  name: "Login",
   components: { GoogleSignInButton },
   data: () => ({
     valid: false,
     user: {
-      username: '',
-      password: '',
-      email: '',
-      name: ''
+      username: "",
+      password: "",
+      email: "",
+      name: ""
     }
   }),
   computed: {
-    ...mapState('auth', { loading: 'isAuthenticatePending' }),
+    ...mapState("auth", { loading: "isAuthenticatePending" }),
     isSignUpPage() {
-      return this.$route.name === 'SignUp'
+      return this.$route.name === "SignUp"
     }
   },
   methods: {
-    ...mapActions('auth', ['authenticate']),
+    ...mapActions("auth", ["authenticate"]),
     onSubmit(email, password) {
       this.authenticate({
-        strategy: 'local',
+        strategy: "local",
         email: email,
         password: password
       })
         .then(() => {
-          console.log('is logged in')
+          console.log("is logged in")
         })
         .catch(e => {
           // Show login page (potentially with `e.message`)
-          console.error('Authentication error', e)
+          console.error("Authentication error", e)
         })
     }
   }

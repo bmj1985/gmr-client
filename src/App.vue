@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import NavBar from '@/components/NavBar'
-import vue100vh from 'vue-100vh'
+import Vue from "vue"
+import NavBar from "@/components/NavBar"
+import vue100vh from "vue-100vh"
 
 export default Vue.extend({
-  name: 'app',
+  name: "app",
   components: { NavBar, vue100vh },
   computed: {
     // The user is automatically set by the feathers-vuex auth module upon login.
@@ -38,8 +38,8 @@ export default Vue.extend({
   },
   mounted() {
     try {
-      this.$store.dispatch('auth/authenticate').catch(error => {
-        if (!error.message.includes('Could not find stored JWT')) {
+      this.$store.dispatch("auth/authenticate").catch(error => {
+        if (!error.message.includes("Could not find stored JWT")) {
           console.error(error)
         }
       })
@@ -51,8 +51,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import './styles/_reset';
-@import './styles/_global';
+@import "./styles/_reset";
+@import "./styles/_global";
 
 * {
   box-sizing: border-box;
@@ -60,7 +60,7 @@ export default Vue.extend({
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -81,7 +81,7 @@ export default Vue.extend({
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('./assets/goldentopo.png');
+    background-image: url("./assets/goldentopo.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

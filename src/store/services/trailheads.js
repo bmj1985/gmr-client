@@ -1,27 +1,27 @@
 import feathersClient, {
   makeServicePlugin,
   BaseModel
-} from '../feathers-client'
+} from "../feathers-client"
 
 class Trailhead extends BaseModel {
   // constructor(data, options) {
   //   super(data, options)
   // }
   // Required for $FeathersVuex plugin to work after production transpile.
-  static modelName = 'Trailhead'
+  static modelName = "Trailhead"
   // Define default properties here
   static instanceDefaults() {
     return {
-      name: '',
-      address: '',
+      name: "",
+      address: "",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     }
   }
 }
-const servicePath = 'trailheads'
+const servicePath = "trailheads"
 const servicePlugin = makeServicePlugin({
-  namespace: 'trailheads',
+  namespace: "trailheads",
   Model: Trailhead,
   service: feathersClient.service(servicePath),
   servicePath
