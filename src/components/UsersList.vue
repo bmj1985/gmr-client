@@ -62,36 +62,36 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { mapGetters, mapState } from 'vuex'
-import { format } from 'date-fns'
+import Vue from "vue"
+import { mapGetters, mapState } from "vuex"
+import { format } from "date-fns"
 export default Vue.extend({
-  name: 'UsersList',
+  name: "UsersList",
   data() {
     return {
       hasMobileCards: true,
       total: 100,
-      sortField: 'approvedBy',
-      sortOrder: 'desc',
-      defaultSortOrder: 'desc',
+      sortField: "approvedBy",
+      sortOrder: "desc",
+      defaultSortOrder: "desc",
       page: 10,
       perPage: 10,
       isPaginated: true,
       isPaginationSimple: false,
-      paginationPosition: 'bottom',
-      defaultSortDirection: 'asc',
-      sortIcon: 'arrow-up',
-      sortIconSize: 'is-small',
+      paginationPosition: "bottom",
+      defaultSortDirection: "asc",
+      sortIcon: "arrow-up",
+      sortIconSize: "is-small",
       currentPage: 1
     }
   },
   computed: {
-    ...mapState('auth', { loading: 'isAuthenticatePending' }),
-    ...mapGetters(['isAdmin'])
+    ...mapState("auth", { loading: "isAuthenticatePending" }),
+    ...mapGetters(["isAdmin"])
   },
   methods: {
     format(date) {
-      return format(date, 'MMM DD, YYYY')
+      return format(date, "MMM DD, YYYY")
     }
   }
 })

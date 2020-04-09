@@ -11,30 +11,30 @@
 ></template>
 
 <script>
-import Vue from 'vue'
-import { mapState, mapGetters } from 'vuex'
+import Vue from "vue"
+import { mapState, mapGetters } from "vuex"
 export default Vue.extend({
-  name: 'UserProfile',
+  name: "UserProfile",
   computed: {
-    ...mapState('auth', { loading: 'isAuthenticatePending' }),
-    ...mapGetters('auth', { user: 'user' }),
+    ...mapState("auth", { loading: "isAuthenticatePending" }),
+    ...mapGetters("auth", { user: "user" }),
     email() {
       if (!this.loading) {
         return this.user.email
       }
-      return ''
+      return ""
     },
     name() {
       if (!this.loading) {
         return this.user.name
       }
-      return ''
+      return ""
     },
     profilePicture() {
       if (!this.loading) {
         return this.user.profilePicture
       }
-      return ''
+      return ""
     }
   }
 })

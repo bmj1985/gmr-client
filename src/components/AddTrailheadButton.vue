@@ -4,10 +4,10 @@
   </button>
 </template>
 <script>
-import Vue from 'vue'
-import TrailheadEditor from './TrailheadEditor'
+import Vue from "vue"
+import TrailheadEditor from "./TrailheadEditor"
 export default Vue.extend({
-  name: 'AddTrailheadButton',
+  name: "AddTrailheadButton",
   computed: {
     clonedTrailhead() {
       const { Trailhead } = this.$FeathersVuex.api

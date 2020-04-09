@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 export default Vue.extend({
-  name: 'InputAndLabel',
+  name: "InputAndLabel",
   props: {
     vModel: { type: String },
-    name: { type: String, default: '' },
-    label: { type: String, default: '' },
-    labelText: { type: String, default: '' },
-    type: { type: String, default: 'text' }
+    name: { type: String, default: "" },
+    label: { type: String, default: "" },
+    labelText: { type: String, default: "" },
+    type: { type: String, default: "text" }
   }
 })
 </script>
@@ -64,6 +64,7 @@ export default Vue.extend({
     text-shadow: none;
     text-align: start;
     -webkit-writing-mode: horizontal-tb !important;
+    writing-mode: horizontal-tb !important;
     -webkit-box-direction: normal;
     /* font-family: ${theme.fonts.tertiary}; */
     font-size: 1.5rem;

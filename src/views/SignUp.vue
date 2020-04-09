@@ -111,35 +111,35 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import GoogleSignInButton from '@/components/GoogleSignInButton'
-import FacebookSignInButton from '@/components/FacebookSignInButton'
-import Container from '@/UIComponents/Container'
-import { mapActions } from 'vuex'
-import { emailIsValid, passwordIsValid } from '@/utils.js'
+import Vue from "vue"
+import GoogleSignInButton from "@/components/GoogleSignInButton"
+import FacebookSignInButton from "@/components/FacebookSignInButton"
+import Container from "@/UIComponents/Container"
+import { mapActions } from "vuex"
+import { emailIsValid, passwordIsValid } from "@/utils.js"
 export default Vue.extend({
-  name: 'SignUp',
+  name: "SignUp",
   components: { GoogleSignInButton, FacebookSignInButton, Container },
   data: () => ({
     valid: false,
-    password: '',
-    tempPassword: '',
-    email: '',
-    tempEmail: '',
-    confirmPassword: '',
-    tempConfirmPassword: '',
+    password: "",
+    tempPassword: "",
+    email: "",
+    tempEmail: "",
+    confirmPassword: "",
+    tempConfirmPassword: "",
     error: undefined,
-    tempName: '',
-    name: '',
+    tempName: "",
+    name: "",
     nameHadFocus: false
   }),
   computed: {
     isSignUpPage() {
-      return this.$route.name === 'SignUp'
+      return this.$route.name === "SignUp"
     },
     labelPosition() {
       if (window.innerWidth < 500) {
-        return 'on-border'
+        return "on-border"
       }
       return null
     },
@@ -153,7 +153,7 @@ export default Vue.extend({
       if (emailIsValid(this.email)) {
         return null
       }
-      return 'Please enter a valid email.'
+      return "Please enter a valid email."
     },
     emailType() {
       if (this.email.length === 0) {
@@ -162,7 +162,7 @@ export default Vue.extend({
       if (emailIsValid(this.email)) {
         return null
       }
-      return 'is-danger'
+      return "is-danger"
     },
     passwordMessage() {
       // A valid password has at least one uppercase, one lowercase, one digit, one special charachter, and is at least 8 characters long
@@ -172,7 +172,7 @@ export default Vue.extend({
       if (passwordIsValid(this.password)) {
         return null
       }
-      return 'Please enter a valid password.'
+      return "Please enter a valid password."
     },
     passwordType() {
       if (this.password.length === 0) {
@@ -181,7 +181,7 @@ export default Vue.extend({
       if (passwordIsValid(this.password)) {
         return null
       }
-      return 'is-danger'
+      return "is-danger"
     },
     confirmPasswordMessage() {
       // A valid password has at least one uppercase, one lowercase, one digit, one special charachter, and is at least 8 characters long
@@ -194,7 +194,7 @@ export default Vue.extend({
       if (this.confirmPassword === this.password) {
         return null
       }
-      return 'Passwords do not match.'
+      return "Passwords do not match."
     },
     confirmPasswordType() {
       if (this.tempConfirmPassword === this.password) {
@@ -206,14 +206,14 @@ export default Vue.extend({
       if (this.confirmPassword === this.password) {
         return null
       }
-      return 'is-danger'
+      return "is-danger"
     },
     nameType() {
       if (this.tempName.length > 3) {
         return null
       }
       if (this.name.length < 2 && this.nameHadFocus) {
-        return 'is-danger'
+        return "is-danger"
       }
       return null
     },
@@ -222,7 +222,7 @@ export default Vue.extend({
         return null
       }
       if (this.name.length < 2 && this.nameHadFocus) {
-        return 'Please enter your name.'
+        return "Please enter your name."
       }
       return null
     }
@@ -253,10 +253,10 @@ export default Vue.extend({
       // Automatically log the user in after successful signup.
       this.createUser({ email, password, name })
         .then(response => {
-          this.authenticate({ strategy: 'local', email, password })
+          this.authenticate({ strategy: "local", email, password })
         })
         .then(res => {
-          this.$router.push('/dashboard')
+          this.$router.push("/dashboard")
         })
         // Just use the returned error instead of mapping it from the store.
         .catch(error => {
@@ -264,16 +264,16 @@ export default Vue.extend({
           let type = error.errorType
           error = Object.assign({}, error)
           error.message =
-            type === 'uniqueViolated'
-              ? 'That email address is unavailable.'
-              : 'An error prevented signup.'
+            type === "uniqueViolated"
+              ? "That email address is unavailable."
+              : "An error prevented signup."
           this.error = error
         })
     },
-    ...mapActions('users', {
-      createUser: 'create'
+    ...mapActions("users", {
+      createUser: "create"
     }),
-    ...mapActions('auth', ['authenticate'])
+    ...mapActions("auth", ["authenticate"])
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {

@@ -1,12 +1,12 @@
-import feathers from '@feathersjs/feathers'
-import socketio from '@feathersjs/socketio-client'
-import auth from '@feathersjs/authentication-client'
-import io from 'socket.io-client'
-import { iff, discard } from 'feathers-hooks-common'
-import feathersVuex from 'feathers-vuex'
-import API_URL from '@/API_URL.js'
+import feathers from "@feathersjs/feathers"
+import socketio from "@feathersjs/socketio-client"
+import auth from "@feathersjs/authentication-client"
+import io from "socket.io-client"
+import { iff, discard } from "feathers-hooks-common"
+import feathersVuex from "feathers-vuex"
+import API_URL from "@/API_URL.js"
 
-const socket = io(API_URL, { transports: ['websocket'] })
+const socket = io(API_URL, { transports: ["websocket"] })
 
 const feathersClient = feathers()
   .configure(socketio(socket))
@@ -15,8 +15,8 @@ const feathersClient = feathers()
     before: {
       all: [
         iff(
-          context => ['create', 'update', 'patch'].includes(context.method),
-          discard('__id', '__isTemp')
+          context => ["create", "update", "patch"].includes(context.method),
+          discard("__id", "__isTemp")
         )
       ]
     }
@@ -32,9 +32,9 @@ const {
   models,
   FeathersVuex
 } = feathersVuex(feathersClient, {
-  serverAlias: 'api', // optional for working with multiple APIs (this is the default value)
-  idField: 'id', // Must match the id field in your database table/collection
-  whitelist: ['$regex', '$options']
+  serverAlias: "api", // optional for working with multiple APIs (this is the default value)
+  idField: "id", // Must match the id field in your database table/collection
+  whitelist: ["$regex", "$options"]
 })
 
 export { makeAuthPlugin, makeServicePlugin, BaseModel, models, FeathersVuex }

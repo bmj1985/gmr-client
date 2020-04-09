@@ -18,7 +18,7 @@
           {"text":  "Personal Information Provided by You. We collect app usage; and other similar data."},
           {"text": "Credentials. We collect passwords, password hints, and similar security information used for authentication and account access."},
           {"text": "Payment Data. We collect data necessary to process your payment if you make purchases, such as your payment instrument number (such as a credit card number), and the security code associated with your payment instrument. All payment data is stored by Stripe. You may find their privacy policy link(s) here: https://stripe.com/privacy."},
-          {"text": "Social Media Login Data. We provide you with the option to register using social media account details, like your Facebook, Twitter or other social media account. If you choose to register in this way, we will collect the Information described in the section called "HOW DO WE HANDLE YOUR SOCIAL LOGINS" below."},
+          {"text": "Social Media Login Data. We provide you with the option to register using social media account details, like your Facebook, Twitter or other social media account. If you choose to register in this way, we will collect the Information described in the section called 'HOW DO WE HANDLE YOUR SOCIAL LOGINS' below."},
           {"text": "All personal information that you provide to us must be true, complete and accurate, and you must notify us of any changes to such personal information."}
         ]
       },

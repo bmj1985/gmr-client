@@ -23,18 +23,18 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { formatDate, nextTuesday } from '../utils'
-import RunDetailsHTML from './RunDetailsHTML.vue'
+import Vue from "vue"
+import { formatDate, nextTuesday } from "../utils"
+import RunDetailsHTML from "./RunDetailsHTML.vue"
 
 export default Vue.extend({
-  name: 'RunDescription',
+  name: "RunDescription",
   components: { RunDetailsHTML },
   props: { gmrEvent: { type: Object } },
   data() {
     return {
       pendingRunDetails:
-        'Details coming soon! Runs are usually posted between the Thursday and Monday prior.'
+        "Details coming soon! Runs are usually posted between the Thursday and Monday prior."
     }
   },
   computed: {
@@ -58,7 +58,7 @@ export default Vue.extend({
         return null
       }
       var pbr = /<p><br>/gi
-      let newText = this.gmrEvent.details.replace(pbr, '<p>')
+      let newText = this.gmrEvent.details.replace(pbr, "<p>")
       return newText
     }
   }

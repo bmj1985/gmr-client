@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 export default Vue.extend({
-  name: 'TrailheadEditor',
+  name: "TrailheadEditor",
   props: {
     item: {
       type: Object,
@@ -66,20 +66,20 @@ export default Vue.extend({
       return false
     },
     modalTitle() {
-      if (this.$route.name === 'AddEvent') {
-        return 'Add Trailhead'
+      if (this.$route.name === "AddEvent") {
+        return "Add Trailhead"
       }
-      return 'Edit Trailhead'
+      return "Edit Trailhead"
     }
   },
   methods: {
     alertEventEdited() {
-      this.$buefy.dialog.alert('Event successfully edited!')
+      this.$buefy.dialog.alert("Event successfully edited!")
     },
     handleSave() {
       if (this.isValidTrailhead) {
         this.item.save().then(this.$parent.close())
-      } else this.$buefy.dialog.alert('Invalid entry, please correct.')
+      } else this.$buefy.dialog.alert("Invalid entry, please correct.")
     }
   }
 })

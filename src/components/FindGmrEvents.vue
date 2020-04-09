@@ -1,12 +1,12 @@
 <template><div /></template>
 <script>
-import Vue from 'vue'
-import { mapActions, mapGetters, mapState } from 'vuex'
+import Vue from "vue"
+import { mapActions, mapGetters, mapState } from "vuex"
 export default Vue.extend({
-  name: 'FindGmrEvents',
+  name: "FindGmrEvents",
   computed: {
-    ...mapState('gmrEvents', { areGmrEventsLoading: 'isFindPending' }),
-    ...mapGetters('gmrEvents', { findGmrEventsInStore: 'find' }),
+    ...mapState("gmrEvents", { areGmrEventsLoading: "isFindPending" }),
+    ...mapGetters("gmrEvents", { findGmrEventsInStore: "find" }),
     queryUpcoming() {
       return {
         datetime: { $gte: new Date().toISOString() },
@@ -51,7 +51,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    ...mapActions('gmrEvents', { findGmrEvents: 'find' })
+    ...mapActions("gmrEvents", { findGmrEvents: "find" })
   },
   created() {
     this.findGmrEvents({

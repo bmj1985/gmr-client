@@ -17,26 +17,26 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import API_URL from '@/API_URL.js'
+import Vue from "vue"
+import API_URL from "@/API_URL.js"
 export default Vue.extend({
-  name: 'FacebookSignInButton',
+  name: "FacebookSignInButton",
   data: () => ({
     API_URL: `${API_URL}/oauth/facebook`
   }),
   computed: {
     buttonText() {
-      if (this.$route.name === 'SignUp') {
-        return 'CONTINUE WITH FACEBOOK'
+      if (this.$route.name === "SignUp") {
+        return "CONTINUE WITH FACEBOOK"
       }
-      return 'LOGIN WITH FACEBOOK'
+      return "LOGIN WITH FACEBOOK"
     }
   }
 })
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
 .facebook-button {
   min-height: 2rem;
   width: 100%;
@@ -70,7 +70,7 @@ export default Vue.extend({
   align-self: center;
 }
 .button-text {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 500;
   font-size: 14px;
   color: white;
