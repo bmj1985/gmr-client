@@ -33,7 +33,7 @@
         </div>
       </b-navbar-dropdown>
     </template>
-    <template slot="end">
+    <template slot="end" class="end">
       <div
         v-if="numberOfItemsInCart > 0"
         class="shopping-cart-icon"
@@ -182,5 +182,8 @@ export default Vue.extend({
 }
 .avatar {
   margin-right: 10px;
+}
+.end {
+  border: solid 1px red;
 }
 </style>
